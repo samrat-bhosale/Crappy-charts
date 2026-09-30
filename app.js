@@ -1,5 +1,5 @@
 /**
- * BEARTRAP TERMINAL - REAL GOOGLE FINANCE DATA & TIME-CONSUMING VERIFICATION ENGINE
+ * CRAPPY CHARTS PRO - REAL GOOGLE FINANCE DATA & TIME-CONSUMING VERIFICATION ENGINE
  * Features:
  * - Real live data fetched from Google Finance & NASDAQ L1 Gateways
  * - Cryptographic SHA-256 verification signatures for all quotes
