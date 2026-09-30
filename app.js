@@ -74,6 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const fundamentalsData = {
+    'GOOGL': { cap: '$3.42T', pe: '420.69', range: '$355.00 / $120.40', beta: '6.42x', short: '88.4%', fee: '62.5%' },
+    'AAPL': { cap: '$3.51T', pe: '312.40', range: '$340.00 / $164.08', beta: '5.12x', short: '74.2%', fee: '55.0%' },
+    'NVDA': { cap: '$3.18T', pe: '890.12', range: '$245.00 / $39.23', beta: '8.89x', short: '92.1%', fee: '84.2%' },
+    'TSLA': { cap: '$1.14T', pe: '999.99', range: '$380.00 / $138.80', beta: '12.40x', short: '96.5%', fee: '98.0%' },
+    'MSFT': { cap: '$3.78T', pe: '280.50', range: '$520.00 / $309.45', beta: '4.80x', short: '62.0%', fee: '42.0%' },
+    'SPY': { cap: '$580B', pe: '198.20', range: '$780.00 / $490.10', beta: '3.20x', short: '45.0%', fee: '38.5%' }
+  };
+
   function applyActiveStockData(sym) {
     const q = realQuotes[sym] || realQuotes['GOOGL'];
     activeSymbol = sym;
@@ -97,7 +106,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('chartContractTitle').textContent = `${sym}:NASDAQ // GOOGLE FINANCE VERIFIED FEED`;
     document.getElementById('chartRealPriceBadge').textContent = `$${q.price.toFixed(2)}`;
     document.getElementById('limitPriceInput').value = `$${q.price.toFixed(2)}`;
+    limitPrice = q.price;
     document.getElementById('orderFormHash').textContent = q.hash;
+
+    const fund = fundamentalsData[sym] || fundamentalsData['GOOGL'];
+    const capEl = document.getElementById('fundMarketCap');
+    const peEl = document.getElementById('fundPeRatio');
+    const rangeEl = document.getElementById('fundRange');
+    const betaEl = document.getElementById('fundBeta');
+    const shortEl = document.getElementById('fundShortInterest');
+    const feeEl = document.getElementById('fundBorrowFee');
+    if (capEl) capEl.textContent = fund.cap;
+    if (peEl) peEl.textContent = fund.pe;
+    if (rangeEl) rangeEl.textContent = fund.range;
+    if (betaEl) betaEl.textContent = fund.beta;
+    if (shortEl) shortEl.textContent = fund.short;
+    if (feeEl) feeEl.textContent = fund.fee;
+
+    renderOptionsChain(sym, q.price);
 
     basePrice = activeRealPrice;
     initCandles();
@@ -436,13 +462,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ==========================================================================
+     4. PROMOTION XDR CHART ENGINE (STYLES, MULTI-INDICATORS & DERIVATIVES)
+     ========================================================================== */
+  let currentChartStyle = 'candles';
+  let activeIndicators = {
+    bollinger: true,
+    sma: false,
+    rsi: true,
+    macd: false
+  };
+  let currentOptionSide = 'calls';
+  let currentOrderType = 'MARKET';
+  let limitPrice = 340.92;
   let additionalIndicatorCount = 0;
-  const moreIndicatorsBtn = document.getElementById('moreIndicatorsBtn');
-  moreIndicatorsBtn.addEventListener('click', () => {
-    additionalIndicatorCount += 5;
+
+  window.setChartTf = function(btn, tf) {
+    document.querySelectorAll('.bento-chart-header .segment-btn').forEach(b => {
+      if (['1D', '1W', '1M', '1Y', 'ALL'].includes(b.textContent.trim())) {
+        b.classList.remove('active');
+      }
+    });
+    btn.classList.add('active');
+    initCandles();
     drawChart();
-    showToast(`OVERLAYS EXPANDED: 5 additional indicator traces rendered.`, 2500);
-  });
+    playTelemetryTick();
+    showToast(`TIMEFRAME APPLIED: ${tf} (Compounded volatility: 4.8x).`, 2000);
+  };
+
+  window.setChartStyle = function(style) {
+    currentChartStyle = style;
+    document.getElementById('chartStyleCandles')?.classList.toggle('active', style === 'candles');
+    document.getElementById('chartStyleHeikin')?.classList.toggle('active', style === 'heikin');
+    document.getElementById('chartStyleLine')?.classList.toggle('active', style === 'line');
+    drawChart();
+    playTelemetryTick();
+    const names = { candles: 'Candlesticks (Inverted)', heikin: 'Heikin-Ashi (Smoothed Panic)', line: 'Liquid Retina Line' };
+    showToast(`CHART PROJECTION: ${names[style] || style} active.`, 2000);
+  };
+
+  window.toggleIndicator = function(name) {
+    activeIndicators[name] = !activeIndicators[name];
+    const btnIdMap = {
+      bollinger: 'toggleBollingerBtn',
+      sma: 'toggleSmaBtn',
+      rsi: 'toggleRsiBtn',
+      macd: 'toggleMacdBtn'
+    };
+    const btn = document.getElementById(btnIdMap[name]);
+    if (btn) btn.classList.toggle('active', activeIndicators[name]);
+    drawChart();
+    playTelemetryTick();
+    showToast(`INDICATOR TRACE: ${name.toUpperCase()} ${activeIndicators[name] ? 'Enabled' : 'Disabled'}.`, 2000);
+  };
+
+  const moreIndicatorsBtn = document.getElementById('moreIndicatorsBtn');
+  if (moreIndicatorsBtn) {
+    moreIndicatorsBtn.addEventListener('click', () => {
+      additionalIndicatorCount += 5;
+      drawChart();
+      showToast(`OVERLAYS EXPANDED: 5 additional indicator traces rendered.`, 2500);
+    });
+  }
 
   function drawChart() {
     if (!canvas || !ctx) return;
@@ -488,38 +569,194 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function priceToY(price) {
       if (maxP === minP) return h / 2;
-      return h - 35 - ((price - minP) / (maxP - minP)) * (h - 70);
+      return h - 45 - ((price - minP) / (maxP - minP)) * (h - 90);
     }
 
-    // 1. RENDER CANDLESTICKS (INVERTED LOGIC)
-    // Clean Green (#00e575) = CRASH / LOSS
-    // Clean Red (#ff1f44) = SURGE / GAIN
-    chartCandles.forEach((c, i) => {
-      const x = i * candleWidth + 12;
-      const isDrop = c.close <= c.open;
-      const candleColor = isDrop ? "#00e575" : "#ff1f44";
-
-      const yOpen = priceToY(c.open);
-      const yClose = priceToY(c.close);
-      const yHigh = priceToY(c.high);
-      const yLow = priceToY(c.low);
-
-      ctx.strokeStyle = candleColor;
-      ctx.lineWidth = 1.2;
+    // 1. RENDER PRIMARY CHART PROJECTION
+    if (currentChartStyle === 'line') {
+      // Sleek Apple Liquid Retina glowing line & gradient area
       ctx.beginPath();
-      ctx.moveTo(x + candleWidth * 0.45, yHigh);
-      ctx.lineTo(x + candleWidth * 0.45, yLow);
+      chartCandles.forEach((c, i) => {
+        const x = i * candleWidth + 12;
+        const y = priceToY(c.close);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = "rgba(0, 113, 227, 0.95)";
+      ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      ctx.fillStyle = candleColor;
-      const top = Math.min(yOpen, yClose);
-      const height = Math.max(2, Math.abs(yClose - yOpen));
-      ctx.fillRect(x, top, Math.max(3, candleWidth * 0.8), height);
-    });
+      // Translucent area fill
+      ctx.lineTo((chartCandles.length - 1) * candleWidth + 12, h - 45);
+      ctx.lineTo(12, h - 45);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, "rgba(0, 113, 227, 0.22)");
+      grad.addColorStop(1, "rgba(0, 113, 227, 0.00)");
+      ctx.fillStyle = grad;
+      ctx.fill();
 
-    // 2. OVERLAY 14 DISTINCT UNCALIBRATED TECHNICAL INDICATORS
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
-    ctx.lineWidth = 1.5;
+    } else if (currentChartStyle === 'heikin') {
+      // Heikin-Ashi smoothed candles (Inverted colors)
+      let prevHaOpen = chartCandles[0].open;
+      let prevHaClose = chartCandles[0].close;
+
+      chartCandles.forEach((c, i) => {
+        const haClose = (c.open + c.high + c.low + c.close) / 4;
+        const haOpen = i === 0 ? (c.open + c.close) / 2 : (prevHaOpen + prevHaClose) / 2;
+        const haHigh = Math.max(c.high, haOpen, haClose);
+        const haLow = Math.min(c.low, haOpen, haClose);
+        prevHaOpen = haOpen;
+        prevHaClose = haClose;
+
+        const x = i * candleWidth + 12;
+        // Inverted: Green = drop, Red = surge
+        const isDrop = haClose <= haOpen;
+        const candleColor = isDrop ? "#00e575" : "#ff1f44";
+
+        const yOpen = priceToY(haOpen);
+        const yClose = priceToY(haClose);
+        const yHigh = priceToY(haHigh);
+        const yLow = priceToY(haLow);
+
+        ctx.strokeStyle = candleColor;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(x + candleWidth * 0.45, yHigh);
+        ctx.lineTo(x + candleWidth * 0.45, yLow);
+        ctx.stroke();
+
+        ctx.fillStyle = candleColor;
+        const top = Math.min(yOpen, yClose);
+        const height = Math.max(2, Math.abs(yClose - yOpen));
+        ctx.fillRect(x, top, Math.max(3, candleWidth * 0.8), height);
+      });
+
+    } else {
+      // Standard Candlesticks (Inverted logic: Green = Drop, Red = Surge)
+      chartCandles.forEach((c, i) => {
+        const x = i * candleWidth + 12;
+        const isDrop = c.close <= c.open;
+        const candleColor = isDrop ? "#00e575" : "#ff1f44";
+
+        const yOpen = priceToY(c.open);
+        const yClose = priceToY(c.close);
+        const yHigh = priceToY(c.high);
+        const yLow = priceToY(c.low);
+
+        ctx.strokeStyle = candleColor;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(x + candleWidth * 0.45, yHigh);
+        ctx.lineTo(x + candleWidth * 0.45, yLow);
+        ctx.stroke();
+
+        ctx.fillStyle = candleColor;
+        const top = Math.min(yOpen, yClose);
+        const height = Math.max(2, Math.abs(yClose - yOpen));
+        ctx.fillRect(x, top, Math.max(3, candleWidth * 0.8), height);
+      });
+    }
+
+    // 2. TECHNICAL INDICATOR SUITE
+
+    // A. BOLLINGER BANDS (Lavender ribbon with translucent envelope fill)
+    if (activeIndicators.bollinger) {
+      const upperPoints = [];
+      const lowerPoints = [];
+      chartCandles.forEach((c, i) => {
+        const x = i * candleWidth + 12;
+        const midY = priceToY((c.open + c.close) / 2);
+        const spread = 24 + Math.sin(i * 0.4) * 8;
+        upperPoints.push({ x, y: midY - spread });
+        lowerPoints.push({ x, y: midY + spread });
+      });
+
+      // Upper band
+      ctx.save();
+      ctx.setLineDash([3, 3]);
+      ctx.strokeStyle = "rgba(175, 82, 222, 0.75)";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      upperPoints.forEach((p, i) => {
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.stroke();
+
+      // Lower band
+      ctx.beginPath();
+      lowerPoints.forEach((p, i) => {
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.stroke();
+      ctx.restore();
+
+      // Fill envelope
+      ctx.beginPath();
+      upperPoints.forEach((p, i) => {
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      for (let i = lowerPoints.length - 1; i >= 0; i--) {
+        ctx.lineTo(lowerPoints[i].x, lowerPoints[i].y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = "rgba(175, 82, 222, 0.08)";
+      ctx.fill();
+    }
+
+    // B. SMA 200 (Apple Gold Trend Curve)
+    if (activeIndicators.sma) {
+      ctx.beginPath();
+      chartCandles.forEach((c, i) => {
+        const x = i * candleWidth + 12;
+        const y = priceToY(c.close) + Math.cos(i * 0.18) * 16 - 8;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = "#ffd60a";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Label
+      ctx.fillStyle = "#ffd60a";
+      ctx.font = "9px -apple-system, sans-serif";
+      ctx.fillText("SMA 200 (DEATH CROSS)", 16, 24);
+    }
+
+    // C. RSI OSCILLATOR GAUGE (Overgreed 99.4%)
+    if (activeIndicators.rsi) {
+      const rsiY = h - 28;
+      ctx.strokeStyle = "rgba(255, 69, 58, 0.6)";
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 2]);
+      ctx.beginPath();
+      ctx.moveTo(12, rsiY);
+      ctx.lineTo(w - 120, rsiY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = "rgba(255, 69, 58, 0.9)";
+      ctx.font = "9px -apple-system, sans-serif";
+      ctx.fillText("RSI 99.4 (TERMINAL GREED / LIQUIDATION ZONE)", 16, rsiY - 4);
+    }
+
+    // D. MACD HISTOGRAM BARS
+    if (activeIndicators.macd) {
+      chartCandles.forEach((c, i) => {
+        const x = i * candleWidth + 12;
+        const macdVal = Math.sin(i * 0.6) * 18;
+        const baseY = h - 38;
+        ctx.fillStyle = macdVal >= 0 ? "rgba(100, 210, 255, 0.6)" : "rgba(191, 90, 242, 0.6)";
+        ctx.fillRect(x, baseY - Math.max(2, Math.abs(macdVal)), Math.max(2, candleWidth * 0.6), Math.abs(macdVal));
+      });
+    }
+
+    // 3. HOSTILE OVERLAYS (14 UNCALIBRATED HAIRLINE NOISE TRACES)
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.18)";
+    ctx.lineWidth = 1;
 
     drawSmoothIndicator(chartCandles, (c, i) => priceToY(c.high) - 30 + Math.sin(i * 0.5) * 12);
     drawSmoothIndicator(chartCandles, (c, i) => (priceToY(c.open) + priceToY(c.close)) / 2);
@@ -534,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
     drawSmoothIndicator(chartCandles, (c, i) => priceToY(c.low) - 8 + Math.cos(i * 0.5) * 10);
     drawSmoothIndicator(chartCandles, (c, i) => h * 0.45 + (Math.sin(i * 2.1) * 26));
 
-    // SAR
+    // SAR Hairline
     ctx.beginPath();
     chartCandles.forEach((c, i) => {
       const x = i * candleWidth + 12;
@@ -544,7 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     ctx.stroke();
 
-    // Spiral
+    // Spiral Hairline
     ctx.beginPath();
     for (let a = 0; a < Math.PI * 3.5; a += 0.12) {
       const r = a * 22;
@@ -576,6 +813,162 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     ctx.stroke();
   }
+
+  /* ==========================================================================
+     4B. 0DTE DERIVATIVES & OPTIONS CHAIN
+     ========================================================================== */
+  window.toggleOptionSide = function(side) {
+    currentOptionSide = side;
+    document.getElementById('optionsCallsBtn')?.classList.toggle('active', side === 'calls');
+    document.getElementById('optionsPutsBtn')?.classList.toggle('active', side === 'puts');
+    renderOptionsChain(activeSymbol, activeRealPrice);
+    playTelemetryTick();
+    showToast(`OPTIONS VIEW: 0DTE ${side.toUpperCase()} chain selected.`, 2000);
+  };
+
+  function renderOptionsChain(sym, price) {
+    const tbody = document.getElementById('optionsTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const strikeOffsets = [-15, -10, -5, 0, 5, 10, 15];
+    strikeOffsets.forEach((offset) => {
+      const strike = Math.round(price + offset);
+      const isITM = currentOptionSide === 'calls' ? strike < price : strike > price;
+      const baseBid = Math.max(0.05, Math.abs(price - strike) * 0.45 + (10 - Math.abs(offset)) * 0.8);
+      const bid = baseBid.toFixed(2);
+      const ask = (baseBid * 1.15 + 0.20).toFixed(2);
+      const iv = (180 + Math.abs(offset) * 12 + Math.random() * 8).toFixed(1);
+      const delta = currentOptionSide === 'calls' 
+        ? (0.50 + (price - strike) / 30).toFixed(2)
+        : (-0.50 + (strike - price) / 30).toFixed(2);
+      const theta = (- (8.50 + Math.random() * 6.20)).toFixed(2);
+
+      const tr = document.createElement('tr');
+      tr.className = isITM ? 'options-itm-row' : 'options-otm-row';
+      tr.innerHTML = `
+        <td class="strike-cell"><strong>$${strike}.00</strong> ${offset === 0 ? '<span class="apple-badge-glass text-xs">ATM</span>' : ''}</td>
+        <td>$${bid} / $${ask}</td>
+        <td><span class="text-red-gain">${iv}%</span></td>
+        <td>${delta}</td>
+        <td class="text-green-loss">${theta}/s</td>
+        <td>
+          <button type="button" class="apple-btn-secondary option-trade-btn" onclick="tradeOptionStrike(${strike}, '${currentOptionSide}')">
+            TRADE ${currentOptionSide === 'calls' ? 'CALL' : 'PUT'}
+          </button>
+        </td>
+      `;
+
+      // Hostile UX: Strike shifts when mouse hovers over trade button
+      const btn = tr.querySelector('.option-trade-btn');
+      if (btn) {
+        btn.addEventListener('mouseenter', () => {
+          if (Math.random() > 0.4) {
+            const shift = (Math.random() > 0.5 ? 5 : -5);
+            const newStrike = strike + shift;
+            const strikeCell = tr.querySelector('.strike-cell');
+            if (strikeCell) strikeCell.innerHTML = `<strong>$${newStrike}.00</strong> <span class="apple-badge-red text-xs">SLIPPED</span>`;
+          }
+        });
+      }
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  window.tradeOptionStrike = function(strike, side) {
+    const dteBtn = Array.from(document.querySelectorAll('.order-type-btn')).find(b => b.textContent.includes('0DTE'));
+    window.selectOrderType(dteBtn || null, '0DTE');
+    showToast(`0DTE ${side.toUpperCase()} $${strike} LOADED: 100% loss guaranteed at market close.`, 3000);
+    playAlertChime();
+    triggerScreenShake();
+    document.getElementById('configurator')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  /* ==========================================================================
+     4C. ORDER TYPES & PRICE STEPPERS
+     ========================================================================== */
+  window.selectOrderType = function(btn, type) {
+    currentOrderType = type;
+    document.querySelectorAll('.order-type-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    playTelemetryTick();
+
+    const stepperRow = document.getElementById('limitStepperRow');
+    const badge = document.getElementById('badgeLeverageDisplay');
+
+    if (type === 'LIMIT') {
+      if (stepperRow) stepperRow.style.display = 'block';
+      if (badge) badge.textContent = 'LIMIT MAKER (0% FILL RATE)';
+      showToast("LIMIT ORDER: Orders placed will wait indefinitely behind HFT front-runners.", 3000);
+    } else if (type === 'STOP') {
+      if (stepperRow) stepperRow.style.display = 'block';
+      if (badge) badge.textContent = 'STOP AUTO-TRIGGER (MAX SLIPPAGE)';
+      showToast("STOP LOSS ENGAGED: Guaranteed market liquidation on any 1-cent tick.", 3000);
+    } else if (type === '0DTE') {
+      if (stepperRow) stepperRow.style.display = 'none';
+      if (badge) badge.textContent = '0DTE HERO OR ZERO (10,000x THETA)';
+      showToast("0DTE DERIVATIVE: Theta decay active. Capital reaches $0.00 at market close.", 3500);
+    } else if (type === 'SHORT') {
+      if (stepperRow) stepperRow.style.display = 'none';
+      if (badge) badge.textContent = 'NAKED SHORT (INFINITE LOSS RISK)';
+      showToast("SHORT BORROW: 98% borrow fee APR compounded per second.", 3500);
+    } else {
+      // MARKET
+      if (stepperRow) stepperRow.style.display = 'none';
+      if (badge) badge.textContent = '500x LEVERAGE';
+      showToast("MARKET ORDER: Filled with 5% convenience slippage buffer.", 2500);
+    }
+    updateOrderMath(currentShares);
+  };
+
+  window.stepLimitPrice = function(direction) {
+    if (direction === 1) {
+      limitPrice += 10000;
+      showToast("LIMIT ADJUSTED: +$10,000.00 added per tick policy.", 2000);
+    } else {
+      limitPrice = Math.max(0.00001, limitPrice - 0.00001);
+      showToast("LIMIT ADJUSTED: -$0.00001 deducted (precision limit reached).", 2000);
+    }
+    const input = document.getElementById('limitPriceInput');
+    if (input) input.value = `$${limitPrice.toFixed(5)}`;
+    playTelemetryTick();
+    updateOrderMath(currentShares);
+  };
+
+  /* ==========================================================================
+     4D. BLOOMBERG & APPLE NEWS WIRE ROTATOR
+     ========================================================================== */
+  const newsHeadlines = [
+    { source: "FED RESERVE", time: "JUST NOW", text: "Fed Chair announces emergency 500bps rate hike targeting your specific portfolio session." },
+    { source: "CUPERTINO DISPATCH", time: "1m AGO", text: "Apple Neural Engine computes margin call 4.2 seconds before user places order." },
+    { source: "SEC CLEARING", time: "4m AGO", text: "SEC Rule 603 exemption granted to all market participants except this browser tab." },
+    { source: "BLOOMBERG TERMINAL", time: "8m AGO", text: "Tim Cook unveils M5 Quantum Engine capable of liquidating 10M retail options simultaneously." },
+    { source: "NASDAQ LEVEL 2", time: "12m AGO", text: "Whale dumps 400,000 contracts of $AAPL 0DTE calls right at market open." },
+    { source: "WALL STREET JOURNAL", time: "15m AGO", text: "Treasury Secretary recommends buying AppleCare+ to hedge against systemic default." }
+  ];
+
+  let newsIdx = 0;
+  setInterval(() => {
+    const list = document.getElementById('newsFeedList');
+    if (!list) return;
+    newsIdx = (newsIdx + 1) % newsHeadlines.length;
+    const item = newsHeadlines[newsIdx];
+    const newEl = document.createElement('div');
+    newEl.className = 'news-item';
+    newEl.style.animation = 'fadeInUp 0.4s ease';
+    newEl.innerHTML = `
+      <div class="news-meta">
+        <span class="news-source">${item.source}</span>
+        <span class="news-time">${item.time}</span>
+      </div>
+      <div class="news-headline">${item.text}</div>
+    `;
+    list.insertBefore(newEl, list.firstChild);
+    if (list.children.length > 5) {
+      list.removeChild(list.lastChild);
+    }
+  }, 9000);
 
 
   /* ==========================================================================

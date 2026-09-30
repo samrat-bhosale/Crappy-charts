@@ -1915,3 +1915,262 @@ body.apple-body {
   gap: 10px;
   animation: apple-toast-in 0.2s var(--apple-spring);
 }
+
+/* ==========================================================================
+   STOCK MARKET FEATURE SUITE STYLES
+   ========================================================================== */
+.bento-column-left,
+.bento-column-center,
+.bento-column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Fundamentals Grid */
+.fundamentals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 14px 18px;
+}
+
+.fund-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fund-label {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+.fund-val {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+/* Chart Controls Wrap & Indicator Action Strip */
+.chart-controls-wrap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.technical-indicators-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+}
+
+.ind-strip-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.ind-pill-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 980px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ind-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-white);
+}
+
+.ind-pill-btn.active {
+  background: rgba(0, 113, 227, 0.2);
+  border-color: var(--apple-blue);
+  color: #5ac8fa;
+}
+
+.ind-pill-btn.danger-pill {
+  color: var(--apple-red);
+  border-color: rgba(255, 69, 58, 0.35);
+}
+
+/* 0DTE Options Chain */
+.bento-options {
+  margin-top: 2px;
+}
+
+.options-table-wrap {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.options-note {
+  font-size: 9px;
+  color: var(--text-dim);
+  padding: 8px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.25);
+  line-height: 1.4;
+}
+
+.option-trade-btn {
+  background: rgba(0, 113, 227, 0.15);
+  border: 1px solid rgba(0, 113, 227, 0.4);
+  color: #5ac8fa;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.option-trade-btn:hover {
+  background: rgba(0, 113, 227, 0.35);
+}
+
+/* Order Types Segmented */
+.order-type-segmented {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.order-type-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 2px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.order-type-btn:hover {
+  color: var(--text-white);
+}
+
+.order-type-btn.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-white);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.order-type-hint {
+  font-size: 9px;
+  color: var(--text-dim);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+/* Stepper Action Row */
+.stepper-action-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.stepper-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-white);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  padding: 8px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.stepper-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Lower Section: News Feed & Wallet */
+.apple-lower-suite {
+  max-width: 1320px;
+  margin: 0 auto 36px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .apple-lower-suite {
+    grid-template-columns: 1fr;
+  }
+}
+
+.news-feed-list {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-source {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--apple-blue);
+  letter-spacing: 0.05em;
+}
+
+.news-time {
+  font-size: 9px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.news-headline {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-white);
+  line-height: 1.45;
+}

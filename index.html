@@ -26,15 +26,16 @@
 
       <div class="apple-nav-links">
         <a href="#overview" class="apple-nav-link active">Overview</a>
-        <a href="#chart" class="apple-nav-link">ProMotion Display</a>
+        <a href="#chart" class="apple-nav-link">ProMotion XDR</a>
+        <a href="#optionsChain" class="apple-nav-link">0DTE Options</a>
         <a href="#configurator" class="apple-nav-link">Configure Ruin</a>
-        <a href="#neural" class="apple-nav-link">Neural Slippage™</a>
+        <a href="#newsSection" class="apple-nav-link">Fed & News</a>
         <a href="#applecare" class="apple-nav-link">AppleCare+</a>
       </div>
 
       <div class="apple-nav-actions">
-        <button class="nav-dongle-btn" id="dongleAlertBtn" title="Lightning Adapter Required">
-          ⚡ Dongle Required
+        <button class="nav-dongle-btn" id="dongleAlertBtn" title="Lightning to Margin Adapter Required">
+          ⚡ Dongle Required ($29)
         </button>
         <button class="nav-bag-btn" id="appleNavBagBtn" title="Bag (0 Liquidation Shields)">
           👜 <span class="bag-count">0</span>
@@ -44,7 +45,7 @@
   </nav>
 
   <!-- =========================================================================
-       2. THE DYNAMIC ISLAND (INTERACTIVE & PSYCHOLOGICALLY FRUSTRATING)
+       2. THE DYNAMIC ISLAND (EXPANDS TO HINDER & ALERT TRADERS)
        ========================================================================= -->
   <div class="dynamic-island-anchor">
     <div class="apple-dynamic-island" id="appleDynamicIsland" title="Click to inspect Cupertino Neural Telemetry">
@@ -97,7 +98,7 @@
   <header class="apple-hero-section" id="overview">
     <div class="hero-content">
       <div class="hero-badge-capsule">
-        <span class="shimmer-pill">NEW // CUPERTINO TITANIUM MATRIX</span>
+        <span class="shimmer-pill">NEW // CUPERTINO TITANIUM PRO TERMINAL</span>
         <span class="shimmer-divider">·</span>
         <span class="shimmer-sub">GOOGLE FINANCE L1 VERIFIED</span>
       </div>
@@ -106,8 +107,8 @@
       <h2 class="hero-subtitle">Titanium. Inverted. Inevitable.</h2>
 
       <p class="hero-summary">
-        Designed by BearTrap in Cupertino. Liquidated everywhere. Built with cold space-black titanium, 
-        a 120Hz Inverted ProMotion display, and our most aggressive anti-patterns yet.
+        Designed by BearTrap in Cupertino. Liquidated everywhere. Featuring an all-in-one institutional trading suite: 
+        120Hz ProMotion Inverted Charts, 0DTE Options Chains, Level 2 Depth of Market, and live Google Finance NASDAQ feeds.
       </p>
 
       <div class="hero-cta-cluster">
@@ -132,7 +133,7 @@
       </div>
       <div class="capsule-pipe"></div>
       <div class="capsule-node text-danger">
-        <span class="capsule-mono">AUTONOMOUS LIQUIDATION:</span>
+        <span class="capsule-mono">AUTONOMOUS LIQUIDATION IN:</span>
         <span class="countdown-clock text-danger font-mono" id="liquidationClock">00:00:14.28</span>
       </div>
       <div class="capsule-pipe"></div>
@@ -144,7 +145,7 @@
     </div>
   </header>
 
-  <!-- INFINITE TICKER STRIP -->
+  <!-- INFINITE REAL TICKER STRIP -->
   <div class="minimal-diagonal-ticker" id="diagonalTicker">
     <div class="minimal-ticker-track" id="realTickerTrack">
       <span class="ticker-tick down">GOOGL 340.92 <span class="delta">▼ -0.53%</span> [GOOGLE VERIFIED]</span>
@@ -161,16 +162,14 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       4. ENTRY GATE: CUPERTINO LIABILITY PROTOCOL MODAL
-       ========================================================================= -->
+  <!-- ENTRY GATE MODAL -->
   <div class="entry-modal-overlay" id="entryGateModal">
     <div class="apple-glass-card entry-modal-card">
       <div class="apple-card-tag">CUPERTINO PROTOCOL MANDATE // SEC RULE 603</div>
       <h1 class="entry-headline"> BearTrap Pro Max</h1>
       <h2 class="entry-sub-headline">Titanium Risk Architecture & Google Finance L1 Gateway</h2>
       <p class="entry-sub">
-        Welcome to the most sophisticated hostile trading environment in the world. Real-time Google Finance 
+        Welcome to the most complete institutional stock market terminal ever engineered. Real-time Google Finance 
         prices are cryptographically signed with SHA-256 tokens and routed directly into our unhedged liquidation matrix.
       </p>
       
@@ -189,7 +188,7 @@
     </div>
   </div>
 
-  <!-- INSTRUMENT HERO BAR -->
+  <!-- INSTRUMENT FLOATING BAR -->
   <div class="instrument-floating-bar" id="instrumentBar">
     <div class="instrument-cell">
       <span class="cell-label">UNDERLYING INSTRUMENT</span>
@@ -219,121 +218,162 @@
   </div>
 
   <!-- =========================================================================
-       5. BENTO-BOX TRADING ARENA (WORLD-CLASS APPLE BENTO LAYOUT)
+       4. BENTO-BOX TRADING ARENA (STOCK MARKET FEATURE SUITE)
        ========================================================================= -->
   <main class="apple-bento-grid">
 
-    <!-- BENTO CARD 1: APPLE STOCKS APP WATCHLIST -->
-    <section class="apple-glass-card bento-card bento-watchlist" id="markets">
-      <div class="bento-card-header">
-        <div class="header-left">
-          <span class="bento-tag">LIVE L1 FEED</span>
-          <h3 class="bento-title">Verified Google Equities</h3>
+    <!-- ==================== COLUMN 1 (LEFT): WATCHLIST & FUNDAMENTALS ==================== -->
+    <aside class="bento-column-left">
+      
+      <!-- BENTO CARD 1: APPLE STOCKS APP WATCHLIST -->
+      <section class="apple-glass-card bento-card bento-watchlist" id="markets">
+        <div class="bento-card-header">
+          <div class="header-left">
+            <span class="bento-tag">LIVE L1 FEED</span>
+            <h3 class="bento-title">Verified Equities</h3>
+          </div>
+          <button class="apple-icon-btn" id="refreshRealQuotesBtn" title="Re-sync Google Finance">⚡ Sync</button>
         </div>
-        <button class="apple-icon-btn" id="refreshRealQuotesBtn" title="Re-sync Google Finance">⚡ Sync</button>
-      </div>
 
-      <div class="apple-stocks-list">
-        <table class="apple-table" id="watchlistTable">
-          <thead>
-            <tr>
-              <th>SYMBOL</th>
-              <th>PRICE</th>
-              <th>24H DELTA</th>
-              <th>VERIFY</th>
-            </tr>
-          </thead>
-          <tbody id="watchlistTableBody">
-            <tr class="watchlist-row active-row" data-symbol="GOOGL">
-              <td>
-                <div class="symbol-pill">
-                  <span class="symbol-avatar">G</span>
-                  <div>
-                    <div class="symbol-name">GOOGL</div>
-                    <div class="symbol-sub">Alphabet Inc</div>
+        <div class="apple-stocks-list">
+          <table class="apple-table" id="watchlistTable">
+            <thead>
+              <tr>
+                <th>SYMBOL</th>
+                <th>PRICE</th>
+                <th>24H DELTA</th>
+                <th>VERIFY</th>
+              </tr>
+            </thead>
+            <tbody id="watchlistTableBody">
+              <tr class="watchlist-row active-row" data-symbol="GOOGL">
+                <td>
+                  <div class="symbol-pill">
+                    <span class="symbol-avatar">G</span>
+                    <div>
+                      <div class="symbol-name">GOOGL</div>
+                      <div class="symbol-sub">Alphabet Inc</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="text-green-loss font-mono" id="price-GOOGL">$340.92</td>
-              <td class="text-green-loss font-mono" id="delta-GOOGL">-0.53%</td>
-              <td class="text-verified font-mono">0xE4A5...</td>
-            </tr>
-            <tr class="watchlist-row" data-symbol="AAPL">
-              <td>
-                <div class="symbol-pill">
-                  <span class="symbol-avatar"></span>
-                  <div>
-                    <div class="symbol-name">AAPL</div>
-                    <div class="symbol-sub">Apple Inc</div>
+                </td>
+                <td class="text-green-loss font-mono" id="price-GOOGL">$340.92</td>
+                <td class="text-green-loss font-mono" id="delta-GOOGL">-0.53%</td>
+                <td class="text-verified font-mono">0xE4A5...</td>
+              </tr>
+              <tr class="watchlist-row" data-symbol="AAPL">
+                <td>
+                  <div class="symbol-pill">
+                    <span class="symbol-avatar"></span>
+                    <div>
+                      <div class="symbol-name">AAPL</div>
+                      <div class="symbol-sub">Apple Inc</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="text-green-loss font-mono" id="price-AAPL">$329.40</td>
-              <td class="text-green-loss font-mono" id="delta-AAPL">-2.66%</td>
-              <td class="text-verified font-mono">0xAACB...</td>
-            </tr>
-            <tr class="watchlist-row" data-symbol="NVDA">
-              <td>
-                <div class="symbol-pill">
-                  <span class="symbol-avatar">N</span>
-                  <div>
-                    <div class="symbol-name">NVDA</div>
-                    <div class="symbol-sub">Nvidia Corp</div>
+                </td>
+                <td class="text-green-loss font-mono" id="price-AAPL">$329.40</td>
+                <td class="text-green-loss font-mono" id="delta-AAPL">-2.66%</td>
+                <td class="text-verified font-mono">0xAACB...</td>
+              </tr>
+              <tr class="watchlist-row" data-symbol="NVDA">
+                <td>
+                  <div class="symbol-pill">
+                    <span class="symbol-avatar">N</span>
+                    <div>
+                      <div class="symbol-name">NVDA</div>
+                      <div class="symbol-sub">Nvidia Corp</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="text-green-loss font-mono" id="price-NVDA">$227.21</td>
-              <td class="text-green-loss font-mono" id="delta-NVDA">-0.72%</td>
-              <td class="text-verified font-mono">0x38AC...</td>
-            </tr>
-            <tr class="watchlist-row" data-symbol="TSLA">
-              <td>
-                <div class="symbol-pill">
-                  <span class="symbol-avatar">T</span>
-                  <div>
-                    <div class="symbol-name">TSLA</div>
-                    <div class="symbol-sub">Tesla Inc</div>
+                </td>
+                <td class="text-green-loss font-mono" id="price-NVDA">$227.21</td>
+                <td class="text-green-loss font-mono" id="delta-NVDA">-0.72%</td>
+                <td class="text-verified font-mono">0x38AC...</td>
+              </tr>
+              <tr class="watchlist-row" data-symbol="TSLA">
+                <td>
+                  <div class="symbol-pill">
+                    <span class="symbol-avatar">T</span>
+                    <div>
+                      <div class="symbol-name">TSLA</div>
+                      <div class="symbol-sub">Tesla Inc</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="text-green-loss font-mono" id="price-TSLA">$352.84</td>
-              <td class="text-green-loss font-mono" id="delta-TSLA">-1.29%</td>
-              <td class="text-verified font-mono">0x7DCB...</td>
-            </tr>
-            <tr class="watchlist-row" data-symbol="MSFT">
-              <td>
-                <div class="symbol-pill">
-                  <span class="symbol-avatar">M</span>
-                  <div>
-                    <div class="symbol-name">MSFT</div>
-                    <div class="symbol-sub">Microsoft</div>
+                </td>
+                <td class="text-green-loss font-mono" id="price-TSLA">$352.84</td>
+                <td class="text-green-loss font-mono" id="delta-TSLA">-1.29%</td>
+                <td class="text-verified font-mono">0x7DCB...</td>
+              </tr>
+              <tr class="watchlist-row" data-symbol="MSFT">
+                <td>
+                  <div class="symbol-pill">
+                    <span class="symbol-avatar">M</span>
+                    <div>
+                      <div class="symbol-name">MSFT</div>
+                      <div class="symbol-sub">Microsoft</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="text-red-gain font-mono" id="price-MSFT">$508.96</td>
-              <td class="text-red-gain font-mono" id="delta-MSFT">+0.05%</td>
-              <td class="text-verified font-mono">0x7652...</td>
-            </tr>
-            <tr class="watchlist-row" data-symbol="SPY">
-              <td>
-                <div class="symbol-pill">
-                  <span class="symbol-avatar">S</span>
-                  <div>
-                    <div class="symbol-name">SPY</div>
-                    <div class="symbol-sub">S&P 500 ETF</div>
+                </td>
+                <td class="text-red-gain font-mono" id="price-MSFT">$508.96</td>
+                <td class="text-red-gain font-mono" id="delta-MSFT">+0.05%</td>
+                <td class="text-verified font-mono">0x7652...</td>
+              </tr>
+              <tr class="watchlist-row" data-symbol="SPY">
+                <td>
+                  <div class="symbol-pill">
+                    <span class="symbol-avatar">S</span>
+                    <div>
+                      <div class="symbol-name">SPY</div>
+                      <div class="symbol-sub">S&P 500 ETF</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td class="text-green-loss font-mono" id="price-SPY">$764.20</td>
-              <td class="text-green-loss font-mono" id="delta-SPY">-0.18%</td>
-              <td class="text-verified font-mono">0xA219...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                </td>
+                <td class="text-green-loss font-mono" id="price-SPY">$764.20</td>
+                <td class="text-green-loss font-mono" id="delta-SPY">-0.18%</td>
+                <td class="text-verified font-mono">0xA219...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-      <!-- PORTFOLIO SURVIVAL INDEX GAUGE -->
-      <div class="apple-gauge-card">
+      <!-- BENTO CARD 1B: KEY FUNDAMENTALS & STOCK STATISTICS -->
+      <section class="apple-glass-card bento-card bento-fundamentals">
+        <div class="bento-card-header">
+          <div>
+            <span class="bento-tag">STATISTICS</span>
+            <h3 class="bento-title">Key Fundamentals</h3>
+          </div>
+          <span class="apple-badge-glass font-mono">NASDAQ L1</span>
+        </div>
+        <div class="fundamentals-grid font-mono">
+          <div class="fund-cell">
+            <span class="fund-label">MARKET CAP</span>
+            <span class="fund-val" id="fundMarketCap">$3.42T</span>
+          </div>
+          <div class="fund-cell">
+            <span class="fund-label">P/E RATIO</span>
+            <span class="fund-val text-danger" id="fundPeRatio">420.69</span>
+          </div>
+          <div class="fund-cell">
+            <span class="fund-label">52W HIGH / LOW</span>
+            <span class="fund-val" id="fundRange">$355.00 / $0.001</span>
+          </div>
+          <div class="fund-cell">
+            <span class="fund-label">BETA (VOLATILITY)</span>
+            <span class="fund-val text-danger" id="fundBeta">6.42x</span>
+          </div>
+          <div class="fund-cell">
+            <span class="fund-label">SHORT INTEREST</span>
+            <span class="fund-val text-danger" id="fundShortInterest">88.4%</span>
+          </div>
+          <div class="fund-cell">
+            <span class="fund-label">BORROW FEE APY</span>
+            <span class="fund-val text-danger" id="fundBorrowFee">62.5%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- BENTO CARD 1C: PORTFOLIO SURVIVAL INDEX GAUGE -->
+      <section class="apple-glass-card bento-card bento-gauge">
         <div class="gauge-header">
           <span class="gauge-caption">PORTFOLIO SURVIVAL INDEX</span>
           <span class="gauge-value text-danger font-mono" id="survivalPercentage">0.04%</span>
@@ -344,302 +384,428 @@
         <div class="gauge-sub font-mono">
           WARNING: Liquidation triggered upon 0.0000001 price displacement.
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- BENTO CARD 2: PROMOTION XDR INVERTED RETINA CANVAS -->
-    <section class="apple-glass-card bento-card bento-chart" id="chart">
-      <div class="bento-card-header chart-toolbar">
-        <div>
-          <span class="bento-tag">PROMOTION XDR DISPLAY // 120HZ INVERTED</span>
-          <h3 class="bento-title" id="chartContractTitle">GOOGL:NASDAQ // GOOGLE FINANCE FEED</h3>
-        </div>
+    </aside>
 
-        <!-- Apple-style Segmented Control cluster -->
-        <div class="apple-segmented-group">
-          <button class="segment-btn active">1D</button>
-          <button class="segment-btn">1W</button>
-          <button class="segment-btn">1M</button>
-          <button class="segment-btn">1Y</button>
-          <button class="segment-btn" id="moreIndicatorsBtn">+5 Overlays</button>
-          <button class="segment-btn danger-segment" id="distortAxisBtn">Warp Y-Axis</button>
-        </div>
-      </div>
-
-      <!-- Canvas Viewport -->
-      <div class="chart-viewport" id="chartContainer">
-        <canvas id="tradingChartCanvas"></canvas>
-
-        <!-- Dynamically Shifting Distorted Y-Axis -->
-        <div class="dynamic-y-axis" id="dynamicYAxis">
-          <div class="y-label" id="yLabel0">$1,000,000.00</div>
-          <div class="y-label" id="yLabel1">-$42,000.00</div>
-          <div class="y-label" id="yLabel2">√420.69</div>
-          <div class="y-label" id="yLabel3">log₁₀(-0.0004)</div>
-          <div class="y-label" id="yLabel4">42,910.88 USD</div>
-          <div class="y-label" id="yLabel5">0.00000000001</div>
-          <div class="y-label" id="yLabel6">π × 10¹²</div>
-          <div class="y-label" id="yLabel7">DIV/0! ERROR</div>
-        </div>
-
-        <div class="indicators-hud-tag" id="indicatorsTag">
-          14 OVERLAYS ACTIVE // VERIFIED REAL PRICE: <span id="chartRealPriceBadge">$340.92</span> // SHA-256 VERIFIED
-        </div>
-      </div>
-
-      <!-- Split Order Depth & Settlement Ledger -->
-      <div class="split-book-tape">
-        <div class="book-half">
-          <div class="sub-header">
-            <span>ORDER DEPTH (REVERSE SCROLLING)</span>
-            <span class="text-danger">SPREAD: 48.2%</span>
+    <!-- ==================== COLUMN 2 (CENTER): PROMOTION CHART & OPTIONS ==================== -->
+    <section class="bento-column-center">
+      
+      <!-- BENTO CARD 2A: PROMOTION XDR CHART WITH TECHNICAL INDICATORS -->
+      <div class="apple-glass-card bento-card bento-chart" id="chart">
+        <div class="bento-card-header chart-toolbar">
+          <div>
+            <span class="bento-tag">PROMOTION XDR DISPLAY // 120HZ INVERTED</span>
+            <h3 class="bento-title" id="chartContractTitle">GOOGL:NASDAQ // GOOGLE FINANCE FEED</h3>
           </div>
-          <div class="orderbook-list" id="reverseOrderBook">
-            <div class="asks-container" id="asksContainer"></div>
-            <div class="spread-divider" id="spreadDisplay">LIQUIDITY VOID DETECTED</div>
-            <div class="bids-container" id="bidsContainer"></div>
+
+          <!-- Timeframes & Chart Controls -->
+          <div class="chart-controls-wrap">
+            <div class="apple-segmented-group">
+              <button class="segment-btn active" onclick="setChartTf(this, '1D')">1D</button>
+              <button class="segment-btn" onclick="setChartTf(this, '1W')">1W</button>
+              <button class="segment-btn" onclick="setChartTf(this, '1M')">1M</button>
+              <button class="segment-btn" onclick="setChartTf(this, '1Y')">1Y</button>
+              <button class="segment-btn" onclick="setChartTf(this, 'ALL')">ALL</button>
+            </div>
+
+            <!-- Chart Style Selector (Candles / Heikin-Ashi / Line) -->
+            <div class="apple-segmented-group">
+              <button class="segment-btn active" id="chartStyleCandles" onclick="setChartStyle('candles')">Candles</button>
+              <button class="segment-btn" id="chartStyleHeikin" onclick="setChartStyle('heikin')">Heikin-Ashi</button>
+              <button class="segment-btn" id="chartStyleLine" onclick="setChartStyle('line')">Line</button>
+            </div>
           </div>
         </div>
 
-        <div class="tape-half">
-          <div class="sub-header">
-            <span>VERIFIED SETTLEMENT LEDGER</span>
-            <span class="text-verified">GOOGLE VERIFIED</span>
+        <!-- Technical Indicator Action Strip -->
+        <div class="technical-indicators-strip">
+          <span class="ind-strip-label">INDICATORS:</span>
+          <button class="ind-pill-btn active" id="toggleBollingerBtn" onclick="toggleIndicator('bollinger')">
+            Bollinger Panic Bands
+          </button>
+          <button class="ind-pill-btn" id="toggleSmaBtn" onclick="toggleIndicator('sma')">
+            SMA 200 Death Cross
+          </button>
+          <button class="ind-pill-btn active" id="toggleRsiBtn" onclick="toggleIndicator('rsi')">
+            RSI (99.4 Overgreed)
+          </button>
+          <button class="ind-pill-btn" id="toggleMacdBtn" onclick="toggleIndicator('macd')">
+            MACD Divergence
+          </button>
+          <button class="ind-pill-btn" id="moreIndicatorsBtn">+5 Overlays</button>
+          <button class="ind-pill-btn danger-pill" id="distortAxisBtn">Warp Y-Axis</button>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div class="chart-viewport" id="chartContainer">
+          <canvas id="tradingChartCanvas"></canvas>
+
+          <!-- Dynamically Shifting Distorted Y-Axis -->
+          <div class="dynamic-y-axis" id="dynamicYAxis">
+            <div class="y-label" id="yLabel0">$1,000,000.00</div>
+            <div class="y-label" id="yLabel1">-$42,000.00</div>
+            <div class="y-label" id="yLabel2">√420.69</div>
+            <div class="y-label" id="yLabel3">log₁₀(-0.0004)</div>
+            <div class="y-label" id="yLabel4">42,910.88 USD</div>
+            <div class="y-label" id="yLabel5">0.00000000001</div>
+            <div class="y-label" id="yLabel6">π × 10¹²</div>
+            <div class="y-label" id="yLabel7">DIV/0! ERROR</div>
           </div>
-          <div class="trades-list" id="recentTradesContainer">
-            <div class="trade-row text-verified">
-              <span>INITIAL SETUP</span>
-              <span>$340.92</span>
-              <span>VERIFIED</span>
+
+          <div class="indicators-hud-tag" id="indicatorsTag">
+            14 OVERLAYS ACTIVE // VERIFIED REAL PRICE: <span id="chartRealPriceBadge">$340.92</span> // SHA-256 VERIFIED
+          </div>
+        </div>
+
+        <!-- Split Order Depth & Settlement Ledger -->
+        <div class="split-book-tape">
+          <div class="book-half">
+            <div class="sub-header">
+              <span>ORDER DEPTH (REVERSE SCROLLING)</span>
+              <span class="text-danger">SPREAD: 48.2%</span>
+            </div>
+            <div class="orderbook-list" id="reverseOrderBook">
+              <div class="asks-container" id="asksContainer"></div>
+              <div class="spread-divider" id="spreadDisplay">LIQUIDITY VOID DETECTED</div>
+              <div class="bids-container" id="bidsContainer"></div>
+            </div>
+          </div>
+
+          <div class="tape-half">
+            <div class="sub-header">
+              <span>VERIFIED SETTLEMENT LEDGER</span>
+              <span class="text-verified">GOOGLE VERIFIED</span>
+            </div>
+            <div class="trades-list" id="recentTradesContainer">
+              <div class="trade-row text-verified">
+                <span>INITIAL SETUP</span>
+                <span>$340.92</span>
+                <span>VERIFIED</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- BENTO CARD 3: CUPERTINO PRODUCT CONFIGURATOR (TRADING DESK) -->
-    <section class="apple-glass-card bento-card bento-configurator" id="configurator">
-      <div class="bento-card-header">
-        <div>
-          <span class="bento-tag">CUPERTINO CONFIGURATOR</span>
-          <h3 class="bento-title">Configure Your Position</h3>
+      <!-- BENTO CARD 2B: 0DTE DERIVATIVES & OPTIONS CHAIN -->
+      <div class="apple-glass-card bento-card bento-options" id="optionsChain">
+        <div class="bento-card-header">
+          <div>
+            <span class="bento-tag">DERIVATIVES DESK</span>
+            <h3 class="bento-title">0DTE Options Chain (Expiring Today)</h3>
+          </div>
+          <div class="apple-segmented-group">
+            <button class="segment-btn active" id="optionsCallsBtn" onclick="toggleOptionSide('calls')">Calls</button>
+            <button class="segment-btn" id="optionsPutsBtn" onclick="toggleOptionSide('puts')">Puts</button>
+          </div>
         </div>
-        <span class="apple-badge-red font-mono">500x LEVERAGE</span>
+
+        <div class="options-table-wrap">
+          <table class="apple-table font-mono" id="optionsChainTable">
+            <thead>
+              <tr>
+                <th>STRIKE</th>
+                <th>BID / ASK</th>
+                <th>IV %</th>
+                <th>DELTA</th>
+                <th>THETA (DECAY/SEC)</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody id="optionsTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="options-note font-mono">
+          * Apple Intelligent Strike Re-centering™: Selecting a strike shifts price by ±$15 into guaranteed maximum pain.
+        </div>
       </div>
 
-      <div class="configurator-body">
-        
-        <!-- Apple-Style Finish Selector -->
-        <div class="config-block">
-          <label class="config-label">1. CHOOSE YOUR FINISH (COLLATERAL RISK)</label>
-          <div class="finish-pill-selector">
-            <button type="button" class="finish-pill active" onclick="selectFinish(this, 'Space Black')">
-              <span class="finish-swatch black-swatch"></span>
-              <span>Space Black (100% Margin Call)</span>
-            </button>
-            <button type="button" class="finish-pill" onclick="selectFinish(this, 'Natural Titanium')">
-              <span class="finish-swatch titanium-swatch"></span>
-              <span>Natural Titanium (Foreclosure)</span>
-            </button>
-            <button type="button" class="finish-pill" onclick="selectFinish(this, 'Desert Titanium')">
-              <span class="finish-swatch desert-swatch"></span>
-              <span>Desert Titanium (Infinite Slippage)</span>
-            </button>
+    </section>
+
+    <!-- ==================== COLUMN 3 (RIGHT): ORDER CONFIGURATOR ==================== -->
+    <aside class="bento-column-right" id="configurator">
+      <div class="apple-glass-card bento-card bento-configurator">
+        <div class="bento-card-header">
+          <div>
+            <span class="bento-tag">ORDER DISPATCH</span>
+            <h3 class="bento-title">Configure Execution</h3>
           </div>
+          <span class="apple-badge-red font-mono" id="badgeLeverageDisplay">500x LEVERAGE</span>
         </div>
 
-        <!-- Apple-Style Storage / Leverage Selector -->
-        <div class="config-block">
-          <label class="config-label">2. CHOOSE YOUR LEVERAGE CAPACITY</label>
-          <div class="storage-selector">
-            <button type="button" class="storage-pill" onclick="selectLeverage(this, '128x')">
-              <div class="storage-val font-mono">128x</div>
-              <div class="storage-sub">Subprime</div>
-            </button>
-            <button type="button" class="storage-pill" onclick="selectLeverage(this, '256x')">
-              <div class="storage-val font-mono">256x</div>
-              <div class="storage-sub">Bankruptcy</div>
-            </button>
-            <button type="button" class="storage-pill active" onclick="selectLeverage(this, '1TB')">
-              <div class="storage-val font-mono">1TB</div>
-              <div class="storage-sub text-danger">Generational Ruin</div>
-            </button>
+        <div class="configurator-body">
+          
+          <!-- ORDER TYPE SELECTOR (MARKET, LIMIT, STOP LOSS, OPTIONS, SHORT) -->
+          <div class="config-block">
+            <label class="config-label">1. CHOOSE ORDER TYPE</label>
+            <div class="order-type-segmented">
+              <button type="button" class="order-type-btn active" onclick="selectOrderType(this, 'MARKET')">Market</button>
+              <button type="button" class="order-type-btn" onclick="selectOrderType(this, 'LIMIT')">Limit</button>
+              <button type="button" class="order-type-btn" onclick="selectOrderType(this, 'STOP')">Stop Loss</button>
+              <button type="button" class="order-type-btn" onclick="selectOrderType(this, '0DTE')">0DTE Option</button>
+              <button type="button" class="order-type-btn" onclick="selectOrderType(this, 'SHORT')">Short Borrow</button>
+            </div>
+            <div class="order-type-hint font-mono text-dim" id="orderTypeDesc">
+              Market execution applies +8.4% Cupertino Convenience Slippage surcharge.
+            </div>
           </div>
-        </div>
 
-        <!-- SENSITIVE POSITION SLIDER -->
-        <div class="config-block">
-          <div class="config-label-row">
-            <span class="config-label">3. POSITION VOLUME (SHARES)</span>
-            <span class="config-highlight font-mono" id="sliderValueText">450,000 SHARES</span>
+          <!-- FINISH SELECTOR -->
+          <div class="config-block">
+            <label class="config-label">2. CHOOSE YOUR FINISH (COLLATERAL RISK)</label>
+            <div class="finish-pill-selector">
+              <button type="button" class="finish-pill active" onclick="selectFinish(this, 'Space Black')">
+                <span class="finish-swatch black-swatch"></span>
+                <span>Space Black (100% Margin Call)</span>
+              </button>
+              <button type="button" class="finish-pill" onclick="selectFinish(this, 'Natural Titanium')">
+                <span class="finish-swatch titanium-swatch"></span>
+                <span>Natural Titanium (Foreclosure)</span>
+              </button>
+              <button type="button" class="finish-pill" onclick="selectFinish(this, 'Desert Titanium')">
+                <span class="finish-swatch desert-swatch"></span>
+                <span>Desert Titanium (Infinite Slippage)</span>
+              </button>
+            </div>
           </div>
-          <input 
-            type="range" 
-            id="insaneOrderSlider" 
-            min="0" 
-            max="1000000" 
-            step="1" 
-            value="450000" 
-            class="apple-range-slider"
-          >
-          <div class="config-caption">
-            * 1 pixel cursor displacement shifts position by ±45,000 shares.
-          </div>
-        </div>
 
-        <!-- MANUAL QUANTITY TRAP -->
-        <div class="config-block">
-          <label class="config-label" for="manualQtyInput">MANUAL OVERRIDE QUANTITY</label>
-          <input 
-            type="text" 
-            id="manualQtyInput" 
-            class="apple-input font-mono" 
-            value="450000"
-          >
-          <div class="config-caption text-danger">
-            * Backspacing multiplies position by 10x per risk policy.
+          <!-- LEVERAGE CAPACITY -->
+          <div class="config-block">
+            <label class="config-label">3. LEVERAGE CAPACITY</label>
+            <div class="storage-selector">
+              <button type="button" class="storage-pill" onclick="selectLeverage(this, '128x')">
+                <div class="storage-val font-mono">128x</div>
+                <div class="storage-sub">Subprime</div>
+              </button>
+              <button type="button" class="storage-pill" onclick="selectLeverage(this, '256x')">
+                <div class="storage-val font-mono">256x</div>
+                <div class="storage-sub">Bankruptcy</div>
+              </button>
+              <button type="button" class="storage-pill active" onclick="selectLeverage(this, '1TB')">
+                <div class="storage-val font-mono">1TB</div>
+                <div class="storage-sub text-danger">Generational Ruin</div>
+              </button>
+            </div>
           </div>
-        </div>
 
-        <!-- VERIFIED REAL LIMIT PRICE (FROM GOOGLE FINANCE) -->
-        <div class="config-block">
-          <label class="config-label" for="limitPriceInput">VERIFIED GOOGLE BENCHMARK</label>
-          <div class="input-action-row">
+          <!-- SENSITIVE POSITION SLIDER -->
+          <div class="config-block">
+            <div class="config-label-row">
+              <span class="config-label">4. POSITION VOLUME (SHARES)</span>
+              <span class="config-highlight font-mono" id="sliderValueText">450,000 SHARES</span>
+            </div>
+            <input 
+              type="range" 
+              id="insaneOrderSlider" 
+              min="0" 
+              max="1000000" 
+              step="1" 
+              value="450000" 
+              class="apple-range-slider"
+            >
+            <div class="config-caption">
+              * 1 pixel cursor displacement shifts position by ±45,000 shares.
+            </div>
+          </div>
+
+          <!-- MANUAL QUANTITY TRAP -->
+          <div class="config-block">
+            <label class="config-label" for="manualQtyInput">MANUAL OVERRIDE QUANTITY</label>
             <input 
               type="text" 
-              id="limitPriceInput" 
-              class="apple-input text-verified font-bold font-mono" 
-              value="$340.92" 
-              readonly
+              id="manualQtyInput" 
+              class="apple-input font-mono" 
+              value="450000"
             >
-            <button class="apple-button apple-btn-secondary" id="randomizePriceBtn">Refetch</button>
-          </div>
-          <div class="config-caption text-verified font-mono">
-            * Confirmed via Google Finance. Hash: <span id="orderFormHash">0xE4A5E3AA16DD31A4</span>
-          </div>
-        </div>
-
-        <!-- FINANCIAL IMPACT SUMMARY -->
-        <div class="apple-impact-summary font-mono">
-          <div class="summary-row">
-            <span>VERIFIED NOTIONAL:</span>
-            <span id="baseOrderVal">$153,414,000.00 USD</span>
-          </div>
-          <div class="summary-row text-danger">
-            <span>500x LEVERAGED EXPOSURE:</span>
-            <span id="leveragedExposureVal">$76,707,000,000.00 USD</span>
-          </div>
-          <div class="summary-row text-danger">
-            <span>SLIPPAGE SURCHARGE:</span>
-            <span id="slippageVal">$9,410.00 USD</span>
-          </div>
-          <div class="summary-row total-row text-danger">
-            <span>REQUIRED MARGIN:</span>
-            <span id="estMarginVal">$23,012,109,410.00 USD</span>
-          </div>
-        </div>
-
-        <!-- APPLECARE+ FOR TRADING CHECKBOX TRAP -->
-        <div class="applecare-box" id="applecare">
-          <label class="applecare-label" id="applecareToggleLabel">
-            <input type="checkbox" id="applecareCheckbox" checked>
-            <div class="applecare-info">
-              <div class="applecare-title"> AppleCare+ for Bankruptcy ($499/mo)</div>
-              <div class="applecare-desc">Includes priority email condolences and high-resolution PDF of your margin call.</div>
+            <div class="config-caption text-danger">
+              * Backspacing multiplies position by 10x per risk policy.
             </div>
-          </label>
-        </div>
-
-        <!-- THE 2-TRY CLEARANCE RITUAL LAUNCHER -->
-        <div class="launch-ritual-container">
-          <div class="ritual-info font-mono" id="mainAttemptTracker">
-            CLEARANCE CYCLE: ATTEMPT <span class="text-danger" id="attemptNumberDisplay">1</span> OF 2
           </div>
-          <button 
-            type="button" 
-            class="apple-button apple-btn-glow launch-ritual-btn" 
-            id="startRitualBtn"
-          >
-            START CLEARANCE ATTEMPT (EST. 10-15s)
-          </button>
-        </div>
 
-        <!-- SWAPPING EVASIVE ACTION BUTTONS -->
-        <div class="swap-buttons-grid" id="swapButtonsWrapper">
-          <button 
-            type="button" 
-            class="apple-button apple-btn-pay" 
-            id="primaryActionBtn1"
-          >
-             Pay // Instant Execution [Bypass Protocol]
-          </button>
-          
-          <button 
-            type="button" 
-            class="apple-button apple-btn-liquidate" 
-            id="primaryActionBtn2"
-          >
-             Liquidate Portfolio Immediately
-          </button>
-        </div>
-        <div class="button-swap-hint">
-          * Instant buttons smoothly glide away with 120Hz ProMotion physics on approach.
-        </div>
-
-        <!-- APPLE FACE ID SOLVENCY CAPTCHA -->
-        <div class="apple-captcha-box" id="captchaBox">
-          <div class="captcha-label">MANDATORY SOLVENCY PASSKEY</div>
-          <div class="captcha-prompt">Select assets guaranteed to withstand instantaneous margin call:</div>
-          <div class="captcha-matrix">
-            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ ENRON CORP ]</div>
-            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ TULIP BULBS ]</div>
-            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ SUBPRIME CDO ]</div>
-            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ SQUID TOKEN ]</div>
+          <!-- LIMIT PRICE STEPPER (PRICE PICKER WITH FRUSTRATING INCREMENTS) -->
+          <div class="config-block" id="limitPriceBlock">
+            <label class="config-label" for="limitPriceInput">VERIFIED GOOGLE EXECUTION BENCHMARK</label>
+            <div class="stepper-action-row">
+              <button type="button" class="stepper-btn" onclick="stepLimitPrice(-1)">– $0.00001</button>
+              <input 
+                type="text" 
+                id="limitPriceInput" 
+                class="apple-input text-verified font-bold font-mono text-center" 
+                value="$340.92" 
+                readonly
+              >
+              <button type="button" class="stepper-btn" onclick="stepLimitPrice(1)">+ $10,000</button>
+              <button class="apple-button apple-btn-secondary" id="randomizePriceBtn">Refetch</button>
+            </div>
+            <div class="config-caption text-verified font-mono">
+              * Confirmed via Google Finance. Hash: <span id="orderFormHash">0xE4A5E3AA16DD31A4</span>
+            </div>
           </div>
-          <div class="captcha-result font-mono" id="captchaStatus">Awaiting passkey authentication (0/4)</div>
-        </div>
 
+          <!-- FINANCIAL IMPACT SUMMARY -->
+          <div class="apple-impact-summary font-mono">
+            <div class="summary-row">
+              <span>VERIFIED NOTIONAL:</span>
+              <span id="baseOrderVal">$153,414,000.00 USD</span>
+            </div>
+            <div class="summary-row text-danger">
+              <span>500x LEVERAGED EXPOSURE:</span>
+              <span id="leveragedExposureVal">$76,707,000,000.00 USD</span>
+            </div>
+            <div class="summary-row text-danger">
+              <span>SLIPPAGE SURCHARGE:</span>
+              <span id="slippageVal">$9,410.00 USD</span>
+            </div>
+            <div class="summary-row total-row text-danger">
+              <span>REQUIRED MARGIN:</span>
+              <span id="estMarginVal">$23,012,109,410.00 USD</span>
+            </div>
+          </div>
+
+          <!-- APPLECARE+ FOR TRADING CHECKBOX TRAP -->
+          <div class="applecare-box" id="applecare">
+            <label class="applecare-label" id="applecareToggleLabel">
+              <input type="checkbox" id="applecareCheckbox" checked>
+              <div class="applecare-info">
+                <div class="applecare-title"> AppleCare+ for Bankruptcy ($499/mo)</div>
+                <div class="applecare-desc">Includes priority email condolences and high-resolution PDF of your margin call.</div>
+              </div>
+            </label>
+          </div>
+
+          <!-- THE 2-TRY CLEARANCE RITUAL LAUNCHER -->
+          <div class="launch-ritual-container">
+            <div class="ritual-info font-mono" id="mainAttemptTracker">
+              CLEARANCE CYCLE: ATTEMPT <span class="text-danger" id="attemptNumberDisplay">1</span> OF 2
+            </div>
+            <button 
+              type="button" 
+              class="apple-button apple-btn-glow launch-ritual-btn" 
+              id="startRitualBtn"
+            >
+              START CLEARANCE ATTEMPT (EST. 10-15s)
+            </button>
+          </div>
+
+          <!-- SWAPPING EVASIVE ACTION BUTTONS (PROMOTION 120HZ EVASION) -->
+          <div class="swap-buttons-grid" id="swapButtonsWrapper">
+            <button 
+              type="button" 
+              class="apple-button apple-btn-pay" 
+              id="primaryActionBtn1"
+            >
+               Pay // Instant Execution [Bypass Protocol]
+            </button>
+            
+            <button 
+              type="button" 
+              class="apple-button apple-btn-liquidate" 
+              id="primaryActionBtn2"
+            >
+               Liquidate Portfolio Immediately
+            </button>
+          </div>
+          <div class="button-swap-hint">
+            * Instant buttons smoothly glide away with 120Hz ProMotion physics on approach.
+          </div>
+
+          <!-- APPLE FACE ID SOLVENCY CAPTCHA -->
+          <div class="apple-captcha-box" id="captchaBox">
+            <div class="captcha-label">MANDATORY SOLVENCY PASSKEY</div>
+            <div class="captcha-prompt">Select assets guaranteed to withstand instantaneous margin call:</div>
+            <div class="captcha-matrix">
+              <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ ENRON CORP ]</div>
+              <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ TULIP BULBS ]</div>
+              <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ SUBPRIME CDO ]</div>
+              <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ SQUID TOKEN ]</div>
+            </div>
+            <div class="captcha-result font-mono" id="captchaStatus">Awaiting passkey authentication (0/4)</div>
+          </div>
+
+        </div>
       </div>
-    </section>
+    </aside>
 
   </main>
 
   <!-- =========================================================================
-       6. ACTIVE EXECUTED POSITIONS (APPLE WALLET PASSES)
+       5. LOWER SECTION: CUPERTINO NEWS FEED & APPLE WALLET LEDGER
        ========================================================================= -->
-  <section class="apple-wallet-section">
-    <div class="wallet-header">
-      <div class="wallet-title-group">
-        <span class="bento-tag">APPLE WALLET // SETTLED PASSES</span>
-        <h2 class="wallet-title">Verified Execution Certificates</h2>
+  <section class="apple-lower-suite" id="newsSection">
+    
+    <!-- CUPERTINO FINANCIAL NEWS & FED WIRE -->
+    <div class="apple-glass-card bento-news-card">
+      <div class="bento-card-header">
+        <div>
+          <span class="bento-tag">BLOOMBERG & APPLE NEWS WIRE</span>
+          <h3 class="bento-title">Live Cupertino Market Headlines</h3>
+        </div>
+        <span class="apple-badge-red font-mono">BREAKING FEED</span>
       </div>
-      <span class="apple-badge-glass" id="positionsCountBadge">0 OPEN CONTRACTS</span>
+      <div class="news-feed-list" id="newsFeedList">
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-source">FED RESERVE</span>
+            <span class="news-time">JUST NOW</span>
+          </div>
+          <div class="news-headline">Fed Chair announces emergency 500bps rate hike targeting your specific portfolio session.</div>
+        </div>
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-source">CUPERTINO DISPATCH</span>
+            <span class="news-time">3m AGO</span>
+          </div>
+          <div class="news-headline">Apple Neural Engine computes margin call 4.2 seconds before user places order.</div>
+        </div>
+        <div class="news-item">
+          <div class="news-meta">
+            <span class="news-source">SEC CLEARING</span>
+            <span class="news-time">11m AGO</span>
+          </div>
+          <div class="news-headline">SEC Rule 603 exemption granted to all market participants except this browser tab.</div>
+        </div>
+      </div>
     </div>
 
-    <div class="wallet-table-container">
-      <table class="apple-table" id="executedPositionsTable">
-        <thead>
-          <tr>
-            <th>CERTIFICATE ID</th>
-            <th>ASSET</th>
-            <th>EXECUTION PRICE</th>
-            <th>SHARES</th>
-            <th>NOTIONAL VALUE</th>
-            <th>GOOGLE HASH</th>
-            <th>SETTLEMENT STATUS</th>
-          </tr>
-        </thead>
-        <tbody id="executedPositionsBody">
-          <tr class="empty-positions-row">
-            <td colspan="7" class="text-dim">No verified executions yet. Complete the 4-Stage Regulatory Order Verification Ritual to execute a real trade.</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- APPLE WALLET ACTIVE EXECUTIONS -->
+    <div class="apple-glass-card bento-wallet-card">
+      <div class="bento-card-header">
+        <div>
+          <span class="bento-tag">APPLE WALLET // SETTLED PASSES</span>
+          <h3 class="bento-title">Verified Execution Certificates</h3>
+        </div>
+        <span class="apple-badge-glass" id="positionsCountBadge">0 OPEN CONTRACTS</span>
+      </div>
+
+      <div class="wallet-table-container">
+        <table class="apple-table" id="executedPositionsTable">
+          <thead>
+            <tr>
+              <th>CERTIFICATE ID</th>
+              <th>ASSET</th>
+              <th>EXECUTION PRICE</th>
+              <th>SHARES</th>
+              <th>NOTIONAL VALUE</th>
+              <th>GOOGLE HASH</th>
+              <th>SETTLEMENT STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="executedPositionsBody">
+            <tr class="empty-positions-row">
+              <td colspan="7" class="text-dim">No verified executions yet. Complete the 4-Stage Regulatory Order Verification Ritual to execute a real trade.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
   </section>
 
   <!-- =========================================================================
-       7. APPLE-STYLE REGULATORY FOOTER (72PX TEXT)
+       6. APPLE FOOTER (72PX DISCLAIMER)
        ========================================================================= -->
   <footer class="apple-footer">
     <div class="footer-huge-disclaimer">
@@ -654,7 +820,7 @@
   </footer>
 
   <!-- =========================================================================
-       8. APPLE PAY / FACE ID REGULATORY ORDER CLEARING SHEET
+       7. APPLE PAY / FACE ID REGULATORY ORDER CLEARING SHEET
        ========================================================================= -->
   <div class="modal-overlay hidden" id="timeConsumingRitualModal">
     <div class="apple-pay-sheet">
