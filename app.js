@@ -1574,14 +1574,174 @@ document.addEventListener('DOMContentLoaded', () => {
       row.classList.add('active-row');
       const sym = row.getAttribute('data-symbol');
       applyActiveStockData(sym);
+      playTelemetryTick();
       showToast(`CONTRACT SWITCHED: ${sym} loaded from Google Finance.`, 2000);
     });
   });
 
+  // DYNAMIC ISLAND INTERACTION
+  const island = document.getElementById('appleDynamicIsland');
+  const compactView = document.getElementById('islandCompactView');
+  const expandedView = document.getElementById('islandExpandedView');
+  const islandClose = document.getElementById('islandCloseBtn');
+  const islandMuteTrigger = document.getElementById('islandMuteTrigger');
+
+  if (island && compactView && expandedView) {
+    island.addEventListener('click', (e) => {
+      if (e.target.closest('#islandCloseBtn')) return;
+      if (!island.classList.contains('is-expanded')) {
+        island.classList.add('is-expanded');
+        compactView.classList.add('hidden');
+        expandedView.classList.remove('hidden');
+        playTelemetryTick();
+      }
+    });
+
+    if (islandClose) {
+      islandClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        island.classList.remove('is-expanded');
+        expandedView.classList.add('hidden');
+        compactView.classList.remove('hidden');
+        playTelemetryTick();
+      });
+    }
+
+    if (islandMuteTrigger) {
+      islandMuteTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        heartbeatBpm = Math.min(160, heartbeatBpm + 14);
+        if (audioCtx && masterGain) {
+          currentVolume = Math.min(0.95, currentVolume + 0.12);
+          masterGain.gain.setValueAtTime(currentVolume, audioCtx.currentTime);
+        }
+        showToast(`CUPERTINO TELEMETRY ALERT: Audio feed mandatory. Heart rate elevated to ${heartbeatBpm} BPM.`, 3500);
+        const bpmEl = document.getElementById('islandHeartbeatText');
+        const audioText = document.getElementById('islandAudioText');
+        if (bpmEl) bpmEl.textContent = `${heartbeatBpm} BPM (Panic Level)`;
+        if (audioText) audioText.textContent = `Feed: ${Math.round(currentVolume * 100)}% Vol`;
+      });
+    }
+  }
+
+  // APPLECARE+ INTERACTION & MODAL
+  const applecareBox = document.getElementById('applecareCheckbox');
+  const applecareModal = document.getElementById('applecareDeclineModal');
+  const keepApplecareBtn = document.getElementById('keepApplecareBtn');
+  const declineApplecareBtn = document.getElementById('declineApplecareBtn');
+  const closeApplecareDeclineBtn = document.getElementById('closeApplecareDeclineBtn');
+
+  if (applecareBox && applecareModal) {
+    applecareBox.addEventListener('click', (e) => {
+      if (!applecareBox.checked) {
+        e.preventDefault();
+        applecareBox.checked = true;
+        applecareModal.classList.remove('hidden');
+        playAlertChime();
+      }
+    });
+
+    if (keepApplecareBtn) {
+      keepApplecareBtn.addEventListener('click', () => {
+        applecareModal.classList.add('hidden');
+        applecareBox.checked = true;
+        showToast(" AppleCare+ Preserved. Peace of mind intact ($499/mo).", 2500);
+        playSuccessChord();
+      });
+    }
+
+    if (declineApplecareBtn) {
+      declineApplecareBtn.addEventListener('click', () => {
+        applecareModal.classList.add('hidden');
+        applecareBox.checked = false;
+        triggerScreenShake();
+        playPanicBurst();
+        showToast("⚠️ DANGER: AppleCare+ Declined! 500x short liability activated.", 3500);
+      });
+    }
+
+    if (closeApplecareDeclineBtn) {
+      closeApplecareDeclineBtn.addEventListener('click', () => {
+        applecareModal.classList.add('hidden');
+        applecareBox.checked = true;
+      });
+    }
+  }
+
+  // APPLE FINISH & LEVERAGE SELECTORS
+  window.selectFinish = function(btn, finishName) {
+    document.querySelectorAll('.finish-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    playTelemetryTick();
+    if (finishName === 'Space Black') {
+      showToast("FINISH SELECTED: Space Black (100% Margin Call Surcharge).", 2000);
+    } else if (finishName === 'Natural Titanium') {
+      showToast("FINISH SELECTED: Natural Titanium (Mandatory Foreclosure Rate).", 2000);
+    } else {
+      showToast("FINISH SELECTED: Desert Titanium (Infinite Slippage Coefficient).", 2000);
+    }
+  };
+
+  window.selectLeverage = function(btn, levName) {
+    document.querySelectorAll('.storage-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    playTelemetryTick();
+    showToast(`LEVERAGE APPLIED: ${levName} capital multiplier engaged.`, 2000);
+  };
+
+  // DONGLE ALERT BUTTON
+  const dongleBtn = document.getElementById('dongleAlertBtn');
+  if (dongleBtn) {
+    dongleBtn.addEventListener('click', () => {
+      triggerScreenShake();
+      playAlertChime();
+      showToast("⚡ HARDWARE EXCEPTION: Lightning to Margin Adapter ($29) not found. Connect Thunderbolt 4 Arbitrage Cable.", 4000);
+    });
+  }
+
+  // KEYNOTE BUTTON
+  const keynoteBtn = document.getElementById('keynoteTriggerBtn');
+  if (keynoteBtn) {
+    keynoteBtn.addEventListener('click', () => {
+      playAlertChime();
+      showToast(" KEYNOTE STREAMING: Steve Jobs ghost introduces 1,000x unhedged leverage on M4 Neural Engine.", 4000);
+    });
+  }
+
+  // BUTTERY 120Hz PROMOTION MAGNETIC EVASION ON SWAP BUTTONS
+  const swapWrapper = document.getElementById('swapButtonsWrapper');
+  if (swapWrapper) {
+    swapWrapper.addEventListener('mousemove', (e) => {
+      const rect = swapWrapper.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const distX = mouseX - centerX;
+      const distY = mouseY - centerY;
+      const dist = Math.hypot(distX, distY);
+
+      if (dist < 90) {
+        const repelX = -(distX / dist) * (90 - dist) * 0.45;
+        const repelY = -(distY / dist) * (90 - dist) * 0.45;
+        btn1.style.transform = `translate3d(${repelX}px, ${repelY}px, 0)`;
+        btn2.style.transform = `translate3d(${-repelX}px, ${-repelY}px, 0)`;
+      } else {
+        btn1.style.transform = 'translate3d(0, 0, 0)';
+        btn2.style.transform = 'translate3d(0, 0, 0)';
+      }
+    });
+
+    swapWrapper.addEventListener('mouseleave', () => {
+      btn1.style.transform = 'translate3d(0, 0, 0)';
+      btn2.style.transform = 'translate3d(0, 0, 0)';
+    });
+  }
+
   const toastContainer = document.getElementById('toastContainer');
   function showToast(message, duration = 3000) {
     const toast = document.createElement('div');
-    toast.className = 'hostile-toast';
+    toast.className = 'apple-toast hostile-toast';
     toast.textContent = message;
     toastContainer.appendChild(toast);
 
