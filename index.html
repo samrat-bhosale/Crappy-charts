@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEARTRAP TERMINAL // GOOGLE FINANCE VERIFIED L1 GATEWAY</title>
+  <!-- Minimalist High-Density Typography: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="terminal-body" id="mainBody">
+
+  <!-- TOP STATUS STRIP: REAL GOOGLE DATA & STRESS TELEMETRY -->
+  <div class="system-status-bar">
+    <div class="status-left">
+      <span class="status-pulse-dot"></span>
+      <span class="status-mono-text">SOURCE: <strong class="text-verified">GOOGLE FINANCE (L1 NASDAQ)</strong></span>
+      <span class="status-divider">|</span>
+      <span class="status-mono-text">VERIFIED HASH: <span id="telemetryHash">0xE4A5E3AA16DD31A4</span></span>
+      <span class="status-divider">|</span>
+      <span class="status-mono-text text-danger">AUTONOMOUS LIQUIDATION PROTOCOL:</span>
+      <span class="countdown-clock text-danger" id="liquidationClock">00:00:14.28</span>
+    </div>
+    <div class="status-right">
+      <span class="status-mono-text">SEC CIK: 0001652044</span>
+      <span class="status-divider">|</span>
+      <span class="status-mono-text">LATENCY: 18ms (REAL-TIME)</span>
+      <span class="status-divider">|</span>
+      <button class="minimal-audio-btn" id="decoyMuteBtn" title="Audio Feed Override">
+        FEED: 100% PRESSURE [CLICK TO SILENCE]
+      </button>
+    </div>
+  </div>
+
+  <!-- MINIMAL DIAGONAL TICKER STRIP (REAL GOOGLE TICKERS) -->
+  <div class="minimal-diagonal-ticker" id="diagonalTicker">
+    <div class="minimal-ticker-track" id="realTickerTrack">
+      <span class="ticker-tick down">GOOGL 340.92 <span class="delta">▼ -0.53%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">AAPL 329.40 <span class="delta">▼ -2.66%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">NVDA 227.21 <span class="delta">▼ -0.72%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">TSLA 352.84 <span class="delta">▼ -1.29%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick up">MSFT 508.96 <span class="delta">▲ +0.05%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">SPY 764.20 <span class="delta">▼ -0.18%</span> [GOOGLE VERIFIED]</span>
+      <!-- Duplicate for infinite seamless loop -->
+      <span class="ticker-tick down">GOOGL 340.92 <span class="delta">▼ -0.53%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">AAPL 329.40 <span class="delta">▼ -2.66%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">NVDA 227.21 <span class="delta">▼ -0.72%</span> [GOOGLE VERIFIED]</span>
+      <span class="ticker-tick down">TSLA 352.84 <span class="delta">▼ -1.29%</span> [GOOGLE VERIFIED]</span>
+    </div>
+  </div>
+
+  <!-- ENTRY GATE: COLD INSTITUTIONAL LIABILITY PROTOCOL -->
+  <div class="entry-modal-overlay" id="entryGateModal">
+    <div class="entry-modal-card">
+      <div class="card-system-tag">PROTOCOL MANDATE 78-DELTA // REAL DATA AUDIT</div>
+      <h1 class="entry-headline">BEARTRAP CAPITAL // GOOGLE FINANCE L1 MATRIX</h1>
+      <p class="entry-sub">
+        Institutional trading interface utilizing live, verified market prices fetched directly from Google Finance. Strict regulatory compliance rituals apply to all executions.
+      </p>
+      <div class="entry-terms-box">
+        <p><strong>REAL DATA AUDIT NOTICE:</strong> All quotes are cryptographically signed via SHA-256 and synchronized with Google Finance. Every execution requires a mandatory 4-stage regulatory cooling-off and verification protocol.</p>
+        <p>Charts utilize inverted outcome polarization (declines rendered in compliance green, gains rendered in defensive crimson).</p>
+      </div>
+      <button class="entry-btn" id="enterExchangeBtn">
+        INITIALIZE VERIFIED TERMINAL SESSION & ENTER PIT
+      </button>
+      <div class="entry-footnote">
+        SESSION IDENTIFIER: 0x9F4B2...A1 // GOOGLE DATA GATEWAY: ACTIVE
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP HEADER / INSTRUMENT BAR -->
+  <header class="terminal-header">
+    <div class="brand-block">
+      <div class="brand-title">BEARTRAP <span class="brand-badge">VERIFIED L1</span></div>
+      <div class="brand-sub">GOOGLE FINANCE CLEARING & RISK ARCHITECTURE</div>
+    </div>
+
+    <!-- Live Market Metrics Strip with Real Google Data -->
+    <div class="instrument-strip">
+      <div class="inst-cell">
+        <div class="inst-label">ACTIVE CONTRACT</div>
+        <div class="inst-val" id="activeContractLabel">GOOGL:NASDAQ (500x)</div>
+      </div>
+      <div class="inst-cell">
+        <div class="inst-label">REAL GOOGLE PRICE</div>
+        <div class="inst-val text-green-loss" id="headerLastPrice">$340.92 <span class="inst-tag" id="headerChangePct">▼ -0.53%</span></div>
+      </div>
+      <div class="inst-cell">
+        <div class="inst-label">CRYPTOGRAPHIC SIGNATURE</div>
+        <div class="inst-val text-verified font-mono" id="headerHashDisplay">0xE4A5E3AA16DD31A4</div>
+      </div>
+      <div class="inst-cell">
+        <div class="inst-label">AUDIT STATUS</div>
+        <div class="inst-val text-verified font-mono">VERIFIED // REGULATION 603</div>
+      </div>
+    </div>
+
+    <!-- Evasive Navigation Actions -->
+    <div class="header-actions">
+      <button class="evasive-action-btn evasive-panic" id="evasivePanicBtn">
+        EMERGENCY SHUTDOWN
+      </button>
+      <button class="evasive-action-btn evasive-logout" id="evasiveLogoutBtn">
+        LOG OUT SESSION
+      </button>
+    </div>
+  </header>
+
+  <!-- CRITICAL ACCOUNT DEFICIT STRIP (HIGH-STRESS LOW-CONTRAST DATA) -->
+  <section class="account-deficit-strip">
+    <div class="deficit-item">
+      <span class="deficit-label">NET COLLATERAL:</span>
+      <span class="deficit-value-dim" id="accountEquityVal">$14,290.40 USD (ACTIVE)</span>
+    </div>
+    <div class="deficit-item">
+      <span class="deficit-label">UNHEDGED MARGIN LIABILITY:</span>
+      <span class="deficit-value-dim text-danger" id="marginDebtVal">-$1,842,910.42 USD</span>
+    </div>
+    <div class="deficit-item">
+      <span class="deficit-label">DATA INTEGRITY:</span>
+      <span class="deficit-value-dim text-verified">100% GOOGLE FINANCE VERIFIED</span>
+    </div>
+    <div class="deficit-item">
+      <span class="deficit-label">REQUIRED EXECUTION TIME:</span>
+      <span class="deficit-value-dim text-danger">~45 SECONDS PER TRADE (MANDATORY)</span>
+    </div>
+  </section>
+
+  <!-- MAIN HIGH-DENSITY TERMINAL GRID -->
+  <main class="terminal-main-grid">
+
+    <!-- LEFT COLUMN: REAL WATCHLIST & MARGIN GAUGE -->
+    <aside class="terminal-panel watchlist-panel">
+      <div class="panel-header">
+        <span class="panel-title">VERIFIED GOOGLE ASSETS</span>
+        <span class="panel-badge-verified">LIVE L1 FEED</span>
+      </div>
+
+      <div class="watchlist-table-wrapper">
+        <table class="minimal-table" id="watchlistTable">
+          <thead>
+            <tr>
+              <th>SYMBOL</th>
+              <th>PRICE</th>
+              <th>24H DELTA</th>
+              <th>VERIFY</th>
+            </tr>
+          </thead>
+          <tbody id="watchlistTableBody">
+            <tr class="watchlist-row active-row" data-symbol="GOOGL">
+              <td><strong>GOOGL</strong></td>
+              <td class="text-green-loss" id="price-GOOGL">$340.92</td>
+              <td class="text-green-loss" id="delta-GOOGL">-0.53%</td>
+              <td class="text-verified">0xE4A5...</td>
+            </tr>
+            <tr class="watchlist-row" data-symbol="AAPL">
+              <td><strong>AAPL</strong></td>
+              <td class="text-green-loss" id="price-AAPL">$329.40</td>
+              <td class="text-green-loss" id="delta-AAPL">-2.66%</td>
+              <td class="text-verified">0xAACB...</td>
+            </tr>
+            <tr class="watchlist-row" data-symbol="NVDA">
+              <td><strong>NVDA</strong></td>
+              <td class="text-green-loss" id="price-NVDA">$227.21</td>
+              <td class="text-green-loss" id="delta-NVDA">-0.72%</td>
+              <td class="text-verified">0x38AC...</td>
+            </tr>
+            <tr class="watchlist-row" data-symbol="TSLA">
+              <td><strong>TSLA</strong></td>
+              <td class="text-green-loss" id="price-TSLA">$352.84</td>
+              <td class="text-green-loss" id="delta-TSLA">-1.29%</td>
+              <td class="text-verified">0x7DCB...</td>
+            </tr>
+            <tr class="watchlist-row" data-symbol="MSFT">
+              <td><strong>MSFT</strong></td>
+              <td class="text-red-gain" id="price-MSFT">$508.96</td>
+              <td class="text-red-gain" id="delta-MSFT">+0.05%</td>
+              <td class="text-verified">0x7652...</td>
+            </tr>
+            <tr class="watchlist-row" data-symbol="SPY">
+              <td><strong>SPY</strong></td>
+              <td class="text-green-loss" id="price-SPY">$764.20</td>
+              <td class="text-green-loss" id="delta-SPY">-0.18%</td>
+              <td class="text-verified">0xA219...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MARGIN EXHAUSTION METER -->
+      <div class="margin-health-container">
+        <div class="margin-health-header">
+          <span>PORTFOLIO SURVIVAL INDEX</span>
+          <span class="text-danger" id="survivalPercentage">0.04%</span>
+        </div>
+        <div class="health-progress-bar">
+          <div class="health-progress-fill" id="sentimentMeterFill"></div>
+        </div>
+        <div class="margin-health-warning">
+          WARNING: Immediate liquidation will occur upon 0.0000001 price displacement.
+        </div>
+      </div>
+
+      <!-- TENSE INSTITUTIONAL NOTICE -->
+      <div class="audit-notice-card">
+        <div class="notice-header">SEC RULE 603 AUDIT COMPLIANCE</div>
+        <p class="notice-body">
+          All orders must be cross-verified against Google Finance REST endpoints. Execution is fully operational, but requires passing mandatory biometric and cryptographic proof-of-work protocols.
+        </p>
+      </div>
+    </aside>
+
+    <!-- CENTER COLUMN: MINIMALIST CHART & OPAQUE INDICATORS -->
+    <section class="terminal-panel chart-panel">
+      <!-- Minimalist Toolbar -->
+      <div class="chart-header-bar">
+        <div class="chart-title-group">
+          <span class="chart-title" id="chartContractTitle">GOOGL:NASDAQ // GOOGLE FINANCE VERIFIED FEED</span>
+          <span class="chart-legend-minimal">
+            <span class="legend-dot green-dot"></span> GREEN = DROP
+            <span class="legend-dot red-dot"></span> RED = GAIN
+          </span>
+        </div>
+        
+        <div class="chart-controls-cluster">
+          <button class="minimal-tool-btn" id="refreshRealQuotesBtn">⚡ RE-SYNC GOOGLE DATA</button>
+          <button class="minimal-tool-btn" id="moreIndicatorsBtn">+5 OPAQUE INDICATORS</button>
+          <button class="minimal-tool-btn danger-tool-btn" id="distortAxisBtn">WARP Y-AXIS</button>
+        </div>
+      </div>
+
+      <!-- Clean, Dark Canvas Chart Wrapper -->
+      <div class="chart-viewport" id="chartContainer">
+        <canvas id="tradingChartCanvas"></canvas>
+
+        <!-- Dynamically Shifting Distorted Y-Axis -->
+        <div class="dynamic-y-axis" id="dynamicYAxis">
+          <div class="y-label" id="yLabel0">$1,000,000.00</div>
+          <div class="y-label" id="yLabel1">-$42,000.00</div>
+          <div class="y-label" id="yLabel2">√420.69</div>
+          <div class="y-label" id="yLabel3">log₁₀(-0.0004)</div>
+          <div class="y-label" id="yLabel4">42,910.88 USD</div>
+          <div class="y-label" id="yLabel5">0.00000000001</div>
+          <div class="y-label" id="yLabel6">π × 10¹²</div>
+          <div class="y-label" id="yLabel7">DIV/0! ERROR</div>
+        </div>
+
+        <!-- 14 Technical Indicators (Identical Opaque Hairlines) -->
+        <div class="indicators-hud-tag" id="indicatorsTag">
+          14 OVERLAYS ACTIVE // VERIFIED REAL PRICE: <span id="chartRealPriceBadge">$340.92</span> // SHA-256 VERIFIED
+        </div>
+      </div>
+
+      <!-- ORDER BOOK & EXECUTED SETTLEMENT LEDGER -->
+      <div class="split-book-tape">
+        <div class="book-half">
+          <div class="sub-header">
+            <span>ORDER DEPTH (REVERSE SCROLLING)</span>
+            <span class="text-danger">SPREAD: 48.2%</span>
+          </div>
+          <div class="orderbook-list" id="reverseOrderBook">
+            <div class="asks-container" id="asksContainer"></div>
+            <div class="spread-divider" id="spreadDisplay">LIQUIDITY VOID DETECTED</div>
+            <div class="bids-container" id="bidsContainer"></div>
+          </div>
+        </div>
+
+        <div class="tape-half">
+          <div class="sub-header">
+            <span>VERIFIED SETTLEMENT LEDGER</span>
+            <span class="text-verified">GOOGLE VERIFIED</span>
+          </div>
+          <div class="trades-list" id="recentTradesContainer">
+            <!-- Populated with real trade executions -->
+            <div class="trade-row text-verified">
+              <span>INITIAL SETUP</span>
+              <span>$340.92</span>
+              <span>VERIFIED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: MINIMAL ORDER EXECUTION TERMINAL WITH TIME-CONSUMING RITUAL -->
+    <aside class="terminal-panel order-panel">
+      <div class="panel-header">
+        <span class="panel-title">ORDER DISPATCH (FUNCTIONAL)</span>
+        <span class="panel-badge-red">500x LEVERAGE</span>
+      </div>
+
+      <div class="order-panel-body">
+        
+        <!-- SENSITIVE POSITION SLIDER -->
+        <div class="order-input-block">
+          <div class="input-label-row">
+            <span>POSITION VOLUME (SHARES)</span>
+            <span class="input-highlight" id="sliderValueText">450,000 SHARES</span>
+          </div>
+          <input 
+            type="range" 
+            id="insaneOrderSlider" 
+            min="0" 
+            max="1000000" 
+            step="1" 
+            value="450000" 
+            class="minimal-range-slider"
+          >
+          <div class="input-caption">
+            * 1 pixel cursor displacement shifts position by ±45,000 shares.
+          </div>
+        </div>
+
+        <!-- MANUAL QUANTITY TRAP -->
+        <div class="order-input-block">
+          <label for="manualQtyInput">MANUAL OVERRIDE INPUT</label>
+          <input 
+            type="text" 
+            id="manualQtyInput" 
+            class="minimal-text-input" 
+            value="450000"
+          >
+          <div class="input-caption text-danger">
+            * Backspacing multiplies position by 10x per risk policy.
+          </div>
+        </div>
+
+        <!-- VERIFIED REAL LIMIT PRICE (FROM GOOGLE FINANCE) -->
+        <div class="order-input-block">
+          <label for="limitPriceInput">VERIFIED GOOGLE EXECUTION BENCHMARK</label>
+          <div class="input-action-row">
+            <input 
+              type="text" 
+              id="limitPriceInput" 
+              class="minimal-text-input text-verified font-bold" 
+              value="$340.92" 
+              readonly
+            >
+            <button class="minimal-tool-btn" id="randomizePriceBtn">REFETCH</button>
+          </div>
+          <div class="input-caption text-verified">
+            * Confirmed with Google Finance. Hash: <span id="orderFormHash">0xE4A5E3AA16DD31A4</span>
+          </div>
+        </div>
+
+        <!-- FINANCIAL IMPACT SUMMARY (CALCULATED WITH REAL GOOGLE PRICE) -->
+        <div class="impact-summary-box">
+          <div class="summary-line">
+            <span>VERIFIED NOTIONAL:</span>
+            <span id="baseOrderVal">$153,414,000.00 USD</span>
+          </div>
+          <div class="summary-line">
+            <span>500x LEVERAGED EXPOSURE:</span>
+            <span class="text-danger" id="leveragedExposureVal">$76,707,000,000.00 USD</span>
+          </div>
+          <div class="summary-line">
+            <span>SLIPPAGE SURCHARGE:</span>
+            <span class="text-danger" id="slippageVal">$9,410.00 USD</span>
+          </div>
+          <div class="summary-line total-line">
+            <span>REQUIRED MARGIN:</span>
+            <span class="text-danger" id="estMarginVal">$23,012,109,410.00 USD</span>
+          </div>
+        </div>
+
+        <!-- TIME-CONSUMING REGULATORY VERIFICATION TRIGGER -->
+        <div class="time-consuming-launch-box">
+          <div class="launch-desc">
+            Execution mandates completing 2-3 verification attempts before final clearance settlement is granted.
+          </div>
+          <div class="attempt-tracker-pill font-mono" id="mainAttemptTracker">
+            CLEARANCE CYCLE: ATTEMPT <span class="text-danger" id="attemptNumberDisplay">1</span> OF 3
+          </div>
+          <button 
+            type="button" 
+            class="terminal-action-btn launch-ritual-btn" 
+            id="startRitualBtn"
+          >
+            START CLEARANCE ATTEMPT (EST. 10-15s)
+          </button>
+        </div>
+
+        <!-- SWAPPING EXECUTION BUTTONS (SWAP ON HOVER) -->
+        <div class="swap-buttons-grid" id="swapButtonsWrapper">
+          <button 
+            type="button" 
+            class="terminal-action-btn buy-btn" 
+            id="primaryActionBtn1"
+          >
+            INSTANT EXECUTION [BYPASS PROTOCOL]
+          </button>
+          
+          <button 
+            type="button" 
+            class="terminal-action-btn liquidate-btn" 
+            id="primaryActionBtn2"
+          >
+            LIQUIDATE PORTFOLIO IMMEDIATELY
+          </button>
+        </div>
+        <div class="button-swap-hint">
+          * Instant buttons swap upon approach and trigger evasive audit inquiry popups.
+        </div>
+
+        <!-- STARK RE-CAPTCHA TRAP -->
+        <div class="minimal-captcha-box" id="captchaBox">
+          <div class="captcha-label">MANDATORY SOLVENCY VERIFICATION</div>
+          <div class="captcha-prompt">Select assets guaranteed to withstand immediate margin call:</div>
+          <div class="captcha-matrix">
+            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ ENRON CORP ]</div>
+            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ TULIP BULBS ]</div>
+            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ SUBPRIME CDO ]</div>
+            <div class="captcha-cell" onclick="toggleCaptchaTile(this)">[ SQUID TOKEN ]</div>
+          </div>
+          <div class="captcha-result" id="captchaStatus">Awaiting selection (0/4)</div>
+        </div>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ACTIVE VERIFIED PORTFOLIO HOLDINGS PANEL -->
+  <section class="portfolio-holdings-bar">
+    <div class="portfolio-header">
+      <span>ACTIVE EXECUTED POSITIONS (VERIFIED SETTLEMENTS)</span>
+      <span class="text-dim" id="positionsCountBadge">0 OPEN CONTRACTS</span>
+    </div>
+    <div class="portfolio-table-container">
+      <table class="minimal-table" id="executedPositionsTable">
+        <thead>
+          <tr>
+            <th>CERTIFICATE ID</th>
+            <th>ASSET</th>
+            <th>EXECUTION PRICE</th>
+            <th>SHARES</th>
+            <th>NOTIONAL VALUE</th>
+            <th>GOOGLE HASH</th>
+            <th>SETTLEMENT STATUS</th>
+          </tr>
+        </thead>
+        <tbody id="executedPositionsBody">
+          <tr class="empty-positions-row">
+            <td colspan="7" class="text-dim">No verified executions yet. Complete the 4-Stage Regulatory Order Verification Ritual to execute a real trade.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- COLD, STRESSFUL LEGAL FORECLOSURE FOOTER (72PX TEXT) -->
+  <footer class="terminal-footer">
+    <div class="footer-huge-disclaimer">
+      LEGAL MANDATE 49-B: CONTINUED SESSION ON BEARTRAP TERMINAL CONSTITUTES IRREVOCABLE SURRENDER OF COLLATERAL, ASSETS, AND EQUITY TO AUTOMATED LIQUIDATION PROTOCOLS WITHOUT NOTICE, RECOURSE, OR ARBITRATION. LIQUIDATION PENALTIES COMPOUND EVERY 14 SECONDS.
+    </div>
+    <div class="footer-sub-disclaimer">
+      SYSTEM PROTOCOL 88-X // ALL ORDERS ROUTED TO UNHEDGED INTERNAL LIQUIDATION POOLS.
+    </div>
+
+    <!-- Hidden 3px true mute button inside footer -->
+    <button class="secret-true-mute-btn" id="secretTrueMuteBtn" title="Silence telemetry feed">.</button>
+  </footer>
+
+  <!-- MULTI-STAGE TIME-CONSUMING VERIFICATION MODAL -->
+  <div class="modal-overlay hidden" id="timeConsumingRitualModal">
+    <div class="ritual-modal-card">
+      <div class="ritual-header">
+        <span>REGULATORY ORDER CLEARING RITUAL // SEC RULE 603</span>
+        <div class="ritual-header-badges">
+          <span class="ritual-stage-badge text-danger" id="ritualAttemptBadge">ATTEMPT 1 / 2</span>
+          <span class="ritual-stage-badge" id="ritualStageBadge">STAGE 1 / 4</span>
+        </div>
+      </div>
+
+      <div class="ritual-body">
+        
+        <!-- STAGE 1: GOOGLE FINANCE MULTI-NODE HANDSHAKE (Takes ~1.2 seconds) -->
+        <div class="ritual-step-view active-step" id="ritualStep1">
+          <div class="step-title">STAGE 1: GOOGLE FINANCE REST GATEWAY VALIDATION</div>
+          <p class="step-desc">
+            Querying Google Finance NASDAQ Level-1 data feed to verify order benchmark integrity and compute SHA-256 cryptographic verification token.
+          </p>
+          <div class="ritual-progress-wrapper">
+            <div class="ritual-progress-bar" id="stage1Progress"></div>
+          </div>
+          <div class="ritual-status-log font-mono" id="stage1StatusLog">
+            Initializing handshake with https://www.google.com/finance/quote/...
+          </div>
+        </div>
+
+        <!-- STAGE 2: MANDATORY SEC COOLING-OFF LOCKOUT (Takes 3 seconds) -->
+        <div class="ritual-step-view hidden" id="ritualStep2">
+          <div class="step-title text-danger">STAGE 2: MANDATORY SEC RULE 603 COOLING-OFF LOCKOUT</div>
+          <p class="step-desc">
+            Under High-Frequency Risk Deterrence protocols, you must pause for 3 seconds to ensure this trade is not a product of emotional duress.
+          </p>
+          <div class="cooling-timer-display text-danger font-mono" id="coolingTimerText">
+            LOCKOUT REMAINING: 00:03.00
+          </div>
+          <div class="lockout-penalty-note">
+            ⚠️ Early click adds a brief +1.0 second cooling penalty.
+          </div>
+          <button class="modal-btn btn-danger disabled-btn" id="coolingProceedBtn" disabled>
+            WAITING FOR COOLING-OFF TIMEOUT...
+          </button>
+        </div>
+
+        <!-- STAGE 3: BIOMETRIC HANDSHAKE: STEADY CURSOR CALIBRATION (Takes 2 seconds) -->
+        <div class="ritual-step-view hidden" id="ritualStep3">
+          <div class="step-title">STAGE 3: FINRA ANTI-BOT STEADY-CURSOR CALIBRATION</div>
+          <p class="step-desc">
+            To prove human deliberation, place your cursor inside the target calibration box and <strong>HOLD COMPLETELY STILL FOR 2.0 SECONDS</strong>.
+          </p>
+          <div class="calibration-arena">
+            <div class="calibration-target-box" id="cursorTargetBox">
+              <span id="targetStatusText">HOVER & HOLD (2.0s)</span>
+            </div>
+          </div>
+          <div class="calibration-progress-bar">
+            <div class="calibration-progress-fill" id="cursorProgressFill"></div>
+          </div>
+          <div class="calibration-feedback font-mono" id="calibrationFeedback">
+            STATUS: Awaiting cursor placement inside target zone.
+          </div>
+        </div>
+
+        <!-- STAGE 4: MANUAL ATTESTATION TRANSCRIPTION -->
+        <div class="ritual-step-view hidden" id="ritualStep4">
+          <div class="step-title">STAGE 4: MANDATORY QUOTE ATTESTATION</div>
+          <p class="step-desc">
+            Transcribe or auto-inject the legal attestation sentence below to ratify execution against Google Finance verified quotes:
+          </p>
+          <div class="attestation-target-phrase font-mono" id="attestationPhrase">
+            I VERIFY GOOGL AT $340.92 IS ACCURATE
+          </div>
+          <div class="attestation-actions-row">
+            <button type="button" class="quick-attest-btn font-mono" id="quickAttestBtn">
+              ⚡ AUTO-INJECT VALIDATED QUOTE ATTESTATION
+            </button>
+          </div>
+          <input 
+            type="text" 
+            class="minimal-text-input font-mono" 
+            id="attestationInput" 
+            placeholder="Type or click auto-inject above..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <div class="attestation-check-log font-mono" id="attestationCheckLog">
+            Matches: 0 / 37 characters typed.
+          </div>
+          <button class="modal-btn btn-danger disabled-btn" id="attestationSubmitBtn" disabled>
+            ATTESTATION REQUIRED TO UNLOCK
+          </button>
+        </div>
+
+        <!-- ATTEMPT FAILURE / RETRY VIEW (EXCEPTIONS ON ATTEMPTS 1 AND 2) -->
+        <div class="ritual-step-view hidden" id="ritualStepFailure">
+          <div class="step-title text-danger" id="attemptFailureTitle">CLEARANCE EXCEPTION // ATTEMPT 1 FAILED</div>
+          <div class="attempt-failure-box font-mono" id="attemptFailureReason">
+            REASON: High-Frequency Node Desynchronization on Google Finance endpoint. Timestamp drift: +14.2ms. In accordance with SEC Rule 603, trade is voided and pushed to Attempt 2.
+          </div>
+          <div class="attempt-failure-cooldown text-danger font-mono" id="attemptCooldownTimer">
+            MANDATORY COOLDOWN: 00:02.00
+          </div>
+          <button class="modal-btn btn-danger disabled-btn" id="retryAttemptBtn" disabled>
+            RE-TRY CLEARANCE (ATTEMPT 2 OF 2)
+          </button>
+        </div>
+
+        <!-- STAGE 5: SETTLEMENT SUCCESS CERTIFICATE -->
+        <div class="ritual-step-view hidden" id="ritualStep5">
+          <div class="step-title text-verified">ORDER SETTLED // GOOGLE FINANCE VERIFIED CERTIFICATE</div>
+          <div class="settlement-cert-box font-mono" id="settlementCertBox">
+            <!-- Populated with verified trade receipt -->
+          </div>
+          <button class="modal-btn" id="finishRitualBtn">
+            CLOSE & RETURN TO TERMINAL LEDGER
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MULTI-LAYER CONFIRMATION MODALS (MINIMAL, CLINICAL, EVASIVE) -->
+  <div class="modal-overlay hidden" id="multiLayerModal">
+    <!-- LAYER 1 -->
+    <div class="modal-card layer-1" id="modalLayer1">
+      <div class="modal-header">
+        <span>RISK ARBITRATION // LEVEL 1 CONFIRMATION</span>
+        <button class="modal-x" id="modalCloseX1">✖</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-statement">
+          Cancel the refusal to decline selling your uncollateralized shares?
+        </div>
+        <p class="modal-note">
+          Selecting incorrectly triggers automated portfolio termination with 500x short liability.
+        </p>
+        <div class="modal-button-row">
+          <button class="modal-btn" id="layer1BtnNo">[ NO / DECLINE REFUSAL ]</button>
+          <button class="modal-btn btn-danger" id="layer1BtnReject">[ REJECT CANCELLATION ]</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYER 2 -->
+    <div class="modal-card layer-2 hidden" id="modalLayer2">
+      <div class="modal-header">
+        <span>RISK ARBITRATION // LEVEL 2 MANDATE</span>
+        <button class="modal-x" id="modalCloseX2">✖</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-statement">
+          Confirm that you do NOT wish to avoid unliquidating the previously non-cancelled cessation?
+        </div>
+        <div class="modal-button-row">
+          <button class="modal-btn" id="layer2BtnDisallow">[ DISALLOW CONFIRMATION ]</button>
+          <button class="modal-btn btn-danger" id="layer2BtnProceed">[ PROCEED TO CANCEL ]</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYER 3 -->
+    <div class="modal-card layer-3 hidden" id="modalLayer3">
+      <div class="modal-header">
+        <span>RISK ARBITRATION // FINAL RESOLUTION</span>
+        <button class="modal-x" id="modalCloseX3">✖</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-statement">
+          Failure to disallow negation will result in unconditional liquidation. Abstain from proceeding with retraction?
+        </div>
+        <div class="modal-button-row">
+          <button class="modal-btn" id="layer3BtnAbstain">[ ABSTAIN FROM PROCEEDING ]</button>
+          <button class="modal-btn btn-danger" id="layer3BtnDesist">[ DESIST FROM NON-ACCEPTANCE ]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNSKIPPABLE ESCAPE TRAP MODAL -->
+  <div class="modal-overlay hidden" id="unskippableTrapModal">
+    <div class="modal-card trap-box">
+      <div class="modal-header header-danger">
+        <span>SYSTEM WARNING: ABORT ATTEMPT DETECTED</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-statement text-danger">
+          MANDATORY PENALTY INCURRED
+        </div>
+        <p class="modal-note">
+          Closing an active risk audit constitutes an admission of unauthorized speculation. Your position has been expanded to <strong>1,000,000 SHARES</strong> at <strong>1,000x LEVERAGE</strong>.
+        </p>
+        <button class="modal-btn btn-danger" id="acceptPenaltyBtn">
+          ACKNOWLEDGE LIABILITY AND RETURN TO TERMINAL
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUNAWAY UNWANTED POPUP VIEWPORT (FOR MULTIPLYING EVASIVE BOXES) -->
+  <div class="runaway-box-viewport" id="runawayViewport"></div>
+  <div class="hydra-popups-viewport" id="hydraContainer"></div>
+
+  <!-- MINIMAL COOKIE HOSTAGE BANNER -->
+  <div class="cookie-hostage-banner" id="cookieHostageBanner">
+    <div class="cookie-content">
+      <div class="cookie-title">REGULATORY DATA MONITORING PROTOCOL</div>
+      <p class="cookie-desc">
+        We log cursor jitter, hesitation intervals, and biometric stress indicators. By remaining active, you assign 15% equity collateral to BearTrap Risk Mitigation LLC.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-accept" id="cookieAcceptBtn">
+        CONSENT & SURRENDER 15% EQUITY
+      </button>
+      <button class="cookie-btn cookie-reject" id="cookieCustomizeBtn">
+        CUSTOMIZE [DISABLED]
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST ALERTS STACK -->
+  <div class="toast-stack-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
